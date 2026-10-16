@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#5b1e34">
+<meta name="description" content="2026년 도쿄 여행 계획 — 호텔, 주요 베뉴 지도, 날짜별 일정">
+<title>2026년 도쿄 여행 계획 · TOKYO 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+<style>
+:root{--burg:#5b1e34;--wine:#7a344e;--ink:#1d1a19;--muted:#756a66;--paper:#f4f0eb;--white:#fffdf9;--line:#dcd2cc;--serif:Georgia,serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);background:var(--paper);font-family:"Noto Sans KR",sans-serif;letter-spacing:-.035em}
+.english,nav,.meta,.eyebrow,.number,.mark{font-family:"Pretendard Variable","Pretendard","Noto Sans KR",sans-serif;letter-spacing:.015em}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+.shell{max-width:1440px;margin:0 auto;padding:0 48px}
+.site-head{position:sticky;top:0;z-index:50;background:rgba(244,240,235,.96);border-bottom:1px solid var(--line)}
+.head-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:78px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
+.logo-mark{width:33px;height:33px;background:var(--burg);color:#fff;display:grid;place-items:center;font:bold 20px var(--serif)}
+.logo-copy{font-size:12px;font-weight:800;letter-spacing:.15em;line-height:1.4}
+.logo-copy span{display:block;color:var(--muted);font-size:9px;font-weight:600;letter-spacing:.12em}
+.date-nav{display:flex;gap:5px;overflow-x:auto;scrollbar-width:thin;flex:1;justify-content:flex-end;padding:12px 0}
+.date-nav button{border:1px solid transparent;background:transparent;color:#655d58;white-space:nowrap;padding:9px 12px;font-size:12px;font-weight:750;min-width:45px}
+.date-nav button:hover{border-bottom:1px solid var(--burg);color:var(--burg)}
+.date-nav button.active{color:#fff;background:var(--burg);border-color:var(--burg)}
+.page{display:none;animation:show .18s ease-out}
+.page.active{display:block}
+@keyframes show{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.pretitle{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--burg);font-weight:800;letter-spacing:.17em;text-transform:uppercase;margin-bottom:13px}
+.pretitle:before{content:"";width:34px;height:2px;background:var(--burg)}
+.cover-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:52px 0 27px}
+h1{font-size:clamp(38px,5.5vw,76px);margin:0;line-height:1.13;font-weight:750;letter-spacing:-.078em}
+.cover-dates{color:var(--burg);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.17em;padding-bottom:8px;text-align:right}
+.hero{position:relative;height:460px;overflow:hidden;background:#48403e}
+.hero img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 48%}
+.hero:after{content:"";pointer-events:none;position:absolute;inset:30% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.57))}
+.hero-caption{position:absolute;bottom:26px;left:35px;right:30px;color:white;z-index:2;display:flex;align-items:end;justify-content:space-between;gap:20px}
+.hero-caption strong{font-size:clamp(22px,3.2vw,42px);font-weight:650;line-height:1.18;letter-spacing:-.045em}
+.hero-caption .small{font-size:11px;letter-spacing:.13em;text-transform:uppercase;opacity:.88;white-space:nowrap}
+.section{padding:56px 0;border-bottom:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;gap:15px;align-items:baseline;margin-bottom:21px}
+.section-head h2{font-size:28px;letter-spacing:-.06em;margin:0;font-weight:750}
+.section-head .tiny{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em}
+.stay-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.stay{display:block;background:var(--white);border:1px solid var(--line);overflow:hidden;text-decoration:none}
+.photo-wrap{height:266px;background:#dfd8d1;overflow:hidden}
+.photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.stay:hover img,.moment:hover img{transform:scale(1.025)}
+.stay-body{display:grid;grid-template-columns:70px 1fr;gap:22px;padding:22px 24px 24px}
+.index-number{font-size:11px;color:var(--burg);font-weight:850;letter-spacing:.08em;padding-top:7px}
+.stay h3{font-size:22px;margin:0 0 8px;letter-spacing:-.045em}
+.stay .period{font-size:13px;color:#504744;margin-bottom:7px;font-weight:650}
+.stay .sub{font-size:12px;color:var(--muted);line-height:1.7}
+.arrow{font-size:17px;color:var(--burg);margin-top:13px;display:inline-block}
+.map-heading{margin:0 0 16px}
+.map-deck{color:#5f5652;font-size:14px;margin:0 0 25px}
+.map-layout{display:grid;grid-template-columns:1.38fr .62fr;gap:24px;align-items:stretch}
+.map-frame{background:#ede5dc;border:1px solid #d8c9c1;min-height:430px;overflow:hidden}
+.map-frame svg{display:block;width:100%;height:100%}
+.venues{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line)}
+.venue{background:var(--white);padding:16px 19px;flex:1;cursor:pointer;transition:background .15s}.venue:hover,.venue.selected{background:#efe2e6}.venue:focus-visible{outline:2px solid var(--burg);outline-offset:-2px}.map-region-caption{margin-top:18px;color:var(--burg);font-weight:750;font-size:14px}
+.venue .num{color:var(--burg);font:bold 11px "Pretendard Variable",sans-serif;margin-right:9px}
+.venue strong{font-size:14px;font-weight:720}
+.venue p{font-size:12px;color:var(--muted);margin:5px 0 0 27px;line-height:1.6}
+.moments{display:grid;grid-template-columns:1.25fr .75fr 1fr;gap:16px;margin-top:24px}
+.moment{overflow:hidden;position:relative;height:245px;background:#c4beb9}
+.moment img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.moment figcaption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.63));color:#fff;padding:45px 18px 17px;font:700 12px "Pretendard Variable",sans-serif;letter-spacing:.08em}
+.footer{padding:27px 0 42px;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;color:#887c76;font-size:11px;line-height:1.7}
+.footer a{color:var(--burg)}
+.day-kicker{padding-top:55px;color:var(--burg);font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:800}
+.day-title{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:end;margin-top:13px}
+.day-title h1{font-size:clamp(38px,5.4vw,66px)}
+.day-title p{margin:0 0 7px;color:#5c504e;font-size:14px;line-height:1.9}
+.day-photo{height:310px;position:relative;margin-top:28px;overflow:hidden}
+.day-photo img{width:100%;height:100%;object-fit:cover}
+.day-photo .overlay{position:absolute;bottom:0;left:0;right:0;padding:50px 26px 20px;color:white;font-size:12px;letter-spacing:.11em;background:linear-gradient(transparent,rgba(0,0,0,.57))}
+.notice{background:#eee5e2;border-left:3px solid var(--burg);padding:17px 20px;margin:24px 0 0;font-size:13px;line-height:1.8;color:#493b3a}
+.day-columns{display:grid;grid-template-columns:minmax(0,1fr) 335px;gap:48px;padding-top:34px}
+.timeline{border-top:1px solid var(--line)}
+.event{display:grid;grid-template-columns:124px 1fr;gap:22px;border-bottom:1px solid var(--line);padding:22px 0}
+.event .hour{font:bold 13px "Pretendard Variable",sans-serif;color:var(--burg);letter-spacing:.015em;padding-top:5px}
+.event h3{font-size:19px;margin:0 0 5px;letter-spacing:-.04em}
+.event p{font-size:13px;color:#6d605a;margin:0;line-height:1.75}
+.event small{font-size:11px;display:block;color:#8b7770;margin-top:6px}
+.sidebox{background:var(--white);border:1px solid var(--line);padding:23px;margin-bottom:18px}
+.sidebox h3{font-size:17px;margin:0 0 13px}
+.sidebox .tag{color:var(--burg);text-transform:uppercase;font-size:10px;font-weight:800;letter-spacing:.12em}
+.sidebox p{font-size:13px;color:#695d59;line-height:1.85;margin:8px 0}
+.sidebox .money{color:var(--burg);font:bold 21px "Pretendard Variable",sans-serif}
+.sep{height:1px;background:var(--line);margin:17px 0}
+.btn-link{display:inline-block;text-decoration:none;border:1px solid var(--burg);padding:9px 12px;color:var(--burg);font-size:12px;font-weight:750;margin-top:9px}
+.empty-wrap{min-height:52vh;display:grid;align-content:center;padding:56px 0}
+.empty-wrap h2{font-size:40px;letter-spacing:-.06em;margin:15px 0}
+.empty-wrap p{color:var(--muted);font-size:14px}
+.credits{color:#9a8e88;font-size:10px;margin-top:30px}
+@media(max-width:1000px){.map-layout,.day-columns{grid-template-columns:1fr}.venues{display:grid;grid-template-columns:repeat(2,1fr)}.day-columns{gap:25px}.hero{height:400px}}
+@media(max-width:700px){.shell{padding:0 19px}.head-inner{display:block;padding:14px 0 0;min-height:unset}.date-nav{justify-content:flex-start;padding:12px 0 8px}.date-nav button{padding:8px 10px}.cover-intro{padding:35px 0 19px;display:block}.cover-dates{text-align:left;margin-top:13px}.hero{height:430px}.hero-caption{left:19px;bottom:19px;display:block}.hero-caption .small{display:block;margin-top:9px}.stay-grid,.moments,.day-title{grid-template-columns:1fr}.stay .photo-wrap{height:235px}.section{padding:38px 0}.section-head h2{font-size:25px}.map-frame{min-height:305px}.venues{grid-template-columns:1fr}.moments{gap:12px}.moment{height:180px}.day-title p{margin-top:15px}.day-photo{height:235px}.event{grid-template-columns:85px 1fr;gap:10px}.event h3{font-size:17px}.event .hour{font-size:11px}.footer{display:block}.footer div+div{margin-top:8px}}
+@media(prefers-reduced-motion:reduce){.page{animation:none}*{scroll-behavior:auto!important;transition:none!important}}
+
+.arrival-hero{display:grid;grid-template-columns:1fr 1fr;background:var(--burg);color:white;margin-top:28px;overflow:hidden}
+.arrival-flight{padding:32px}.arrival-flight .flightno{font:800 42px "Pretendard Variable",sans-serif;letter-spacing:-.04em}.arrival-flight .airports{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0}.arrival-flight .airport{font:800 40px "Pretendard Variable",sans-serif}.arrival-flight .airports small{display:block;font-size:12px;opacity:.76;font-weight:400;letter-spacing:0}.arrival-flight .arrow-air{font-size:25px;opacity:.8}.arrival-flight .flightfoot{font-size:12px;opacity:.75;line-height:1.9}
+.arrival-hero img{width:100%;height:100%;object-fit:cover;max-height:340px}
+.arrival-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:34px;padding:34px 0 60px}
+.transport-options{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}.transport-option{background:#fffdf9;border:1px solid var(--line);padding:18px}.transport-option h3{font-size:16px;margin:0 0 10px}.transport-option p{font-size:12px;line-height:1.85;color:#6d605a}
+.tripchecks{background:#fffdf9;border:1px solid var(--line);padding:22px}.tripcheck{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.55}.tripcheck:last-child{border-bottom:0}.tripcheck input{width:18px;height:18px;accent-color:var(--burg);margin-top:2px;flex:none}.tripcheck.done span{text-decoration:line-through;color:#918782}
+.arrival-note{color:#756a66;font-size:12px;line-height:1.8}.arrival-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.arrival-links a{color:var(--burg);font-size:12px;border-bottom:1px solid var(--burg);text-decoration:none;padding-bottom:3px}
+@media(max-width:850px){.arrival-layout,.arrival-hero{grid-template-columns:1fr}.arrival-hero img{max-height:190px}.transport-options{grid-template-columns:1fr}}
+.address-map{border:1px solid var(--line);height:190px;background:#e9e2da;margin:15px 0 4px;overflow:hidden}.address-map iframe{width:100%;height:100%;border:0;display:block}.day30-hero .flightno{font-size:clamp(42px,5vw,66px);line-height:1.05;margin:25px 0 28px}.day30-sub{font-size:12px;line-height:2.1;letter-spacing:.075em;color:#f3e6e8}.day30-lower{padding:10px 0 52px}.day30-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.day30-card-grid .sidebox{margin:0;height:100%}.highlights{font-size:13px;line-height:2.1}.highlights div{border-bottom:1px solid var(--line);padding:5px 0}.highlights div:last-child{border:0}@media(max-width:680px){.day30-card-grid{grid-template-columns:1fr}} .budget-list{display:grid;gap:8px;font-size:13px}.budget-list>strong{font-size:12px;color:var(--burg);padding-top:12px;border-top:1px solid var(--line)}.budget-list>div:not(.money){display:flex;justify-content:space-between;gap:8px}.budget-list small{font-size:11px;color:var(--muted)}.budget-list .money{font-size:21px}.venue-facts{margin:13px 0;display:grid;gap:0}.venue-facts>div{display:grid;grid-template-columns:85px minmax(0,1fr);gap:12px;padding:9px 0;border-bottom:1px solid var(--line);line-height:1.65}.venue-facts>div:last-child{border-bottom:none}.venue-facts dt{font-size:12px;font-weight:650;color:var(--muted)}.venue-facts dd{font-size:12px;margin:0;overflow-wrap:anywhere}@media(max-width:500px){.venue-facts>div{grid-template-columns:75px minmax(0,1fr);gap:7px}}/* Day 02 venue imagery — uniform cropping */
+.day30-venue-image{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:7px;margin:12px 0 15px;background:#e7e4df}
+.meal-subhead{font-size:18px;font-weight:750;margin:19px 0 14px;letter-spacing:-.04em}
+@media(min-width:1100px){.day31-three{grid-template-columns:repeat(3,minmax(0,1fr))}}.day31-three .sidebox h3{overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="shell head-inner">
+    <a href="#main" class="logo" aria-label="메인으로"><span class="logo-mark">T</span><span class="logo-copy">TOKYO 2026<span>TRAVEL JOURNAL</span></span></a>
+    <nav class="date-nav" aria-label="날짜별 페이지">
+      <button data-page="main" class="active">MAIN</button>
+      <button data-page="2026-10-29">10.29</button><button data-page="2026-10-30">10.30</button><button data-page="2026-10-31">10.31</button>
+      <button data-page="2026-11-01">11.01</button><button data-page="2026-11-02">11.02</button><button data-page="2026-11-03">11.03</button>
+      <button data-page="2026-11-04">11.04</button><button data-page="2026-11-05">11.05</button><button data-page="2026-11-06">11.06</button><button data-page="2026-11-07">11.07</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="page active" data-view="main">
+<div class="shell">
+ <div class="cover-intro"><div><div class="pretitle english">TOKYO / OCTOBER — NOVEMBER 2026</div><h1>2026년 도쿄 여행 계획</h1></div><div class="cover-dates english">29 OCT – 07 NOV 2026<br>JAPAN / TOKYO</div></div>
+ <div class="hero">
+  <img src="assets/photos/tokyo-skyline.jpg" alt="도쿄 도심 전경. 프로젝트 내부에 저장된 사진" fetchpriority="high">
+  <div class="hero-caption"><strong>도쿄에서 보내는 열흘</strong><span class="small english">A CITY, A FILM, A WALK / 2026</span></div>
+ </div>
+ <section class="section" id="stays">
+  <div class="section-head"><h2 class="english">Stay 1 / Stay 2</h2><span class="tiny">TWO STAYS · TOKYO</span></div>
+  <div class="stay-grid">
+   <a href="https://www.gate-hotel.jp/en/ryogoku/" target="_blank" rel="noopener" class="stay">
+    <div class="photo-wrap">
+      <img src="https://cdn.jalan.jp/jalan/images/pict3L/Y1/Y361371/Y361371203.jpg" data-fallback="assets/photos/sumida-sunset.jpg" data-credit="공식 호텔 사진 로드 실패 · 스미다 지역 이미지" alt="THE GATE HOTEL RYOGOKU 호텔 건물 외관" loading="lazy">
+    </div>
+    <div class="stay-body"><div class="index-number english">01 / STAY</div><div><h3 class="english">THE GATE HOTEL RYOGOKU</h3><div class="period">10월 30일(금) 체크인 — 11월 3일(화) 체크아웃</div><div class="sub">1-2-13 Yokoami, Sumida-ku, Tokyo 130-0015, Japan</div><span class="arrow">공식 사이트 ↗</span></div></div>
+   </a>
+   <div class="stay">
+     <div class="photo-wrap"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Sensoji.jpg?width=960" data-fallback="assets/photos/asakusa-aerial.jpg" alt="아사쿠사 센소지 전경" loading="lazy"></div>
+     <div class="stay-body"><div class="index-number english">02 / STAY</div><div><h3 class="english">CREVIA ASAKUSA</h3><div class="period">10월 29일(목) 1박 / 11월 3일(화) — 11월 7일(토) 체크아웃</div><div class="sub">5-6-10 Asakusa, Taito-ku, Tokyo 111-0032, Japan</div><span class="arrow english">ASAKUSA, TOKYO</span></div></div>
+   </div>
+  </div>
+ </section>
+ <section class="section" id="venues">
+  <div class="section-head"><h2>주요 베뉴 지도</h2><span class="tiny english">TOKYO / AREA GUIDE</span></div>
+  <p class="map-deck">이번 여행에서 반복해서 오갈 거점을 한눈에 이해하기 위한 개요 지도</p>
+  <div class="map-layout">
+   <div class="map-frame">
+    <svg viewBox="0 0 760 465" role="img" aria-label="도쿄 주요 권역의 상대적 위치를 표시한 개요 지도, 실제 축척은 아님">
+     <rect width="760" height="465" fill="#eee6dc"/>
+     <path d="M0 73 L172 42 277 87 399 54 515 88 672 37 760 92 V465 H0Z" fill="#e4d9cc"/>
+     <path d="M600 12 C565 93 590 126 605 165 C626 225 562 260 570 314 C583 371 650 393 630 459" fill="none" stroke="#c0d1d5" stroke-width="28" opacity=".9"/>
+     <path d="M612 14 C578 97 602 127 618 169 C639 229 574 269 581 316 C595 375 665 401 642 461" fill="none" stroke="#f2f5f1" stroke-width="3" opacity=".7"/>
+     <g fill="none" stroke="#f8f3ec" stroke-width="10" opacity=".7">
+       <path d="M65 140L680 228"/><path d="M120 352L730 190"/><path d="M60 240L540 360"/><path d="M180 68L340 454"/><path d="M415 50L285 445"/>
+     </g>
+     <g font-family="Pretendard,Noto Sans KR,sans-serif">
+      <text x="36" y="42" fill="#786a63" font-size="12" letter-spacing="3">TOKYO / DISTRICT INDEX</text>
+      <g data-region="night" role="button" tabindex="0" style="cursor:pointer"><circle cx="166" cy="224" r="10" fill="#5b1e34"/><text x="186" y="219" font-size="17" font-weight="750" fill="#2c2423">신주쿠 니초메</text><text x="186" y="240" font-size="12" fill="#73655d">NICHOME / CLUBS</text></g>
+      <g data-region="central" role="button" tabindex="0" style="cursor:pointer"><circle cx="400" cy="312" r="10" fill="#5b1e34"/><text x="311" y="342" font-size="17" font-weight="750" fill="#2c2423">유라쿠초 · 히비야</text><text x="310" y="361" font-size="12" fill="#73655d">TIFF / FILM VENUES</text></g>
+      <g data-region="ginza" role="button" tabindex="0" style="cursor:pointer"><circle cx="461" cy="303" r="8" fill="#896273"/><text x="468" y="330" font-size="12" fill="#4f4140">교바시 · NFAJ</text></g>
+      <g data-region="east" role="button" tabindex="0" style="cursor:pointer"><circle cx="641" cy="187" r="11" fill="#5b1e34"/><text x="538" y="164" font-size="17" font-weight="750" fill="#2c2423">료고쿠</text><text x="528" y="181" font-size="12" fill="#73655d">STAY 01</text></g>
+      <g data-region="east" role="button" tabindex="0" style="cursor:pointer"><circle cx="673" cy="99" r="11" fill="#5b1e34"/><text x="560" y="77" font-size="17" font-weight="750" fill="#2c2423">아사쿠사</text><text x="568" y="93" font-size="12" fill="#73655d">STAY 02</text></g>
+      <g data-region="ueno" role="button" tabindex="0" style="cursor:pointer"><circle cx="550" cy="105" r="6" fill="#998c82"/><text x="493" y="96" font-size="12" fill="#73655d">우에노</text></g>
+      <g data-region="kiyosumi" role="button" tabindex="0" style="cursor:pointer"><circle cx="645" cy="363" r="6" fill="#998c82"/><text x="660" y="369" font-size="12" fill="#73655d">키요스미</text></g>
+      <g data-region="west" role="button" tabindex="0" style="cursor:pointer"><circle cx="281" cy="401" r="6" fill="#998c82"/><text x="165" y="418" font-size="12" fill="#73655d">에비스 · 메구로</text></g>
+      <text x="29" y="448" fill="#82766f" font-size="10" letter-spacing="1.5">SCHEMATIC ONLY — NOT TO SCALE</text>
+     </g>
+    </svg>
+   </div>
+   <div class="venues">
+     <div class="venue" role="button" tabindex="0" data-region="east" aria-pressed="false"><span class="num">01</span><strong>RYOGOKU / ASAKUSA</strong><p>두 숙소를 중심으로 스미다강과 동쪽 도쿄 산책</p></div>
+     <div class="venue" role="button" tabindex="0" data-region="central" aria-pressed="false"><span class="num">02</span><strong>HIBIYA / YURAKUCHO</strong><p>도쿄국제영화제 · 영화관 · 서점 · 카페</p></div>
+     <div class="venue" role="button" tabindex="0" data-region="ginza" aria-pressed="false"><span class="num">03</span><strong>KYOBASHI / GINZA</strong><p>국립영화아카이브 · 영화와 점심 동선</p></div>
+     <div class="venue" role="button" tabindex="0" data-region="night" aria-pressed="false"><span class="num">04</span><strong>SHINJUKU NICHOME</strong><p>10월 30일 저녁 이후 클럽 방문</p></div>
+     <div class="venue" role="button" tabindex="0" data-region="west" aria-pressed="false"><span class="num">05</span><strong>EBISU / MEGURO</strong><p>향후 일정 후보 · 사진과 산책, 독립서점</p></div>
+   </div>
+  </div>
+  <div class="map-region-caption" id="region-caption">지도 속 권역 또는 오른쪽 목록을 누르면 아래 장소 사진이 바뀝니다.</div>
+  <div class="moments">
+    <figure class="moment" style="margin:0"><img src="assets/photos/sumida-sunset.jpg" alt="도쿄 스카이트리에서 바라본 일몰" loading="lazy"><figcaption>SUMIDA / SUNSET</figcaption></figure>
+    <figure class="moment" style="margin:0"><img src="assets/photos/tokyo-garden.jpg" alt="도쿄 황거 외원 소나무 정원" loading="lazy"><figcaption>CITY GARDEN / TOKYO</figcaption></figure>
+    <figure class="moment" style="margin:0"><img src="assets/photos/asakusa-aerial.jpg" alt="도쿄 동부를 내려다본 풍경" loading="lazy"><figcaption>ASAKUSA / EAST TOKYO</figcaption></figure>
+  </div>
+ </section>
+ <footer class="footer"><div class="english">TOKYO 2026 / AN EDITORIAL TRAVEL JOURNAL</div><div>여행 계획은 계속 업데이트됩니다. <a href="#2026-10-30">10월 30일 상세 일정 보기 ↗</a></div></footer>
+</div>
+</section>
+
+<section class="page" data-view="2026-10-29">
+<div class="shell">
+ <div class="day-kicker english">DAY 01 / THU · 29 OCTOBER 2026 <span style="margin-left:14px;color:#8e6d78;font-size:10px;letter-spacing:.08em">UPDATED 10.16 · V3</span></div>
+ <div class="day-title"><h1>10월 29일 목요일</h1></div>
+ <div class="arrival-hero">
+  <div class="arrival-flight"><div class="english" style="font-size:11px;letter-spacing:.2em">KOREAN AIR · INTERNATIONAL</div><div class="flightno">KE2105</div>
+    <div class="airports"><div><span class="airport">GMP</span><small>19:30 · 김포 국제선</small></div><div class="arrow-air">→</div><div><span class="airport">HND</span><small>21:35 · 하네다 T3</small></div></div>
+    <div class="flightfoot">2026.10.29 목요일 / 소요시간 2시간 5분<br>Airbus A330-300 · 일반석 · 위탁수하물 1개</div>
+  </div>
+  <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Terminal_3_haneda_airport_tokyo.jpg?width=1100" data-fallback="assets/photos/tokyo-skyline.jpg" alt="하네다공항 제3터미널 실내">
+ </div>
+ <div class="arrival-layout">
+  <div>
+   <div class="pretitle english">THE ARRIVAL ROUTE</div><h2 style="font-size:27px;margin:0 0 12px">하네다 공항 → CREVIA ASAKUSA</h2>
+   <div class="timeline">
+    <article class="event"><div class="hour">17:30 권장</div><div><h3>김포공항 국제선 터미널 도착</h3><p>대한항공 체크인 및 수하물 위탁. 출발 약 2시간 전 공항 도착을 기준으로 설정.</p></div></article>
+    <article class="event"><div class="hour">19:30–21:35</div><div><h3>KE2105 · 김포 → 하네다</h3><p>하네다공항 제3터미널 도착. 일본 현지시각 기준.</p></div></article>
+    <article class="event"><div class="hour">21:35 이후</div><div><h3>입국심사 · 수하물 수령 · 세관 신고</h3><p>Visit Japan Web QR 준비. 실제 수속 완료 시각에 따라 이후 교통편 결정.</p></div></article>
+    <article class="event"><div class="hour">22시대 예상</div><div><h3>게이큐 공항선 → 도에이 아사쿠사선</h3><p>하네다 제3터미널에서 게이큐선 탑승 → 센가쿠지(泉岳寺)를 거쳐 도에이 아사쿠사선으로 직통 운행. 23:09 마지막 직통편을 놓치면 23:37 출발의 환승 경로를 이용할 수 있어.</p><small>평일 시간표 기준: 마지막 직통 23:09→23:54 · 최종 환승 경로 23:37→00:23(익일)</small></div></article>
+    <article class="event"><div class="hour">도착 후</div><div><h3>CREVIA ASAKUSA 도착</h3><p>5-6-10 Asakusa, Taito-ku, Tokyo 111-0032. 아사쿠사역에서 도보 이동.</p></div></article>
+   </div>
+   <div class="pretitle english" style="margin-top:30px">AIRPORT TRANSFER / KEIKYU</div>
+   <div class="transport-option">
+    <h3>하네다 제3터미널 → 아사쿠사역</h3>
+    <p><strong>이동 노선:</strong> 게이큐 공항선 → 도에이 아사쿠사선 직통(열차에 따라 센가쿠지 환승).<br>
+    <strong>이동 시간:</strong> 직통 약 41~45분 · 최종 환승 경로 약 46분.<br>
+    <strong>일반 운임:</strong> IC 약 ¥599 / 승차권 약 ¥610.<br>
+    <strong>평일 마지막 직통:</strong> 23:09 출발 → 23:54 아사쿠사 도착.<br>
+    <strong>평일 최종 환승 경로:</strong> 23:37 출발 → 00:23 아사쿠사 도착(다음 날).<br>
+    <strong>숙소까지:</strong> 아사쿠사역에서 도보 이동 추가.</p>
+    <div class="arrival-links"><a href="https://www.keikyu.co.jp/visit/haneda-airport/access/train.html" target="_blank" rel="noopener">게이큐 공식 노선 안내 ↗</a><a href="https://ekitan.com/transit/last/sf-9624/st-1491" target="_blank" rel="noopener">아사쿠사역 막차 조회 ↗</a></div>
+   </div>
+   <p class="arrival-note" style="margin-top:14px">※ 마지막 직통과 환승 경로는 현재 공개된 평일 시간표 기준. 2026년 10월 29일 실제 운행은 변동될 수 있어 출발 직전 재확인. 00:08 시나가와행 막차는 아사쿠사까지의 연결을 보장하지 않으므로 제외했어.</p>
+  </div>
+  <aside>
+   <div class="tripchecks"><div class="pretitle english">PRE-DEPARTURE CHECKLIST</div><h3 style="font-size:21px;margin:0 0 12px">출발 전 준비</h3>
+     <label class="tripcheck"><input type="checkbox" data-check="passport"><span>여권 유효기간·항공권 영문명 확인</span></label>
+     <label class="tripcheck"><input type="checkbox" data-check="visitjapan"><span>Visit Japan Web 입국심사·세관신고 등록 및 QR 준비</span></label>
+     <label class="tripcheck"><input type="checkbox" data-check="eticket"><span>대한항공 e-ticket / 탑승권 개인 기기에 저장</span></label>
+     <label class="tripcheck"><input type="checkbox" data-check="train"><span>마지막 직통 23:09 / 최종 환승 경로 23:37 기억하기</span></label>
+     <label class="tripcheck"><input type="checkbox" data-check="esim"><span>일본 eSIM·로밍 / 교통 IC 카드 준비</span></label>
+     <label class="tripcheck"><input type="checkbox" data-check="payment"><span>일본 엔화·해외결제 카드·충전기 준비</span></label>
+     <div class="arrival-links"><a href="https://www.vjw.digital.go.jp/" target="_blank" rel="noopener">Visit Japan Web ↗</a><a href="https://www.keikyu.co.jp/ride/kakueki/KK16.html" target="_blank" rel="noopener">하네다 T3 열차시간표 ↗</a><a href="https://www.google.com/maps/search/?api=1&query=Crevia+Asakusa+5-6-10" target="_blank" rel="noopener">숙소 지도 ↗</a></div>
+   </div>
+   <div class="sidebox" style="margin-top:20px"><div class="tag english">ADDRESS / CHECK-IN</div><h3>CREVIA ASAKUSA</h3><p>東京都台東区浅草5丁目6-10<br>5-6-10 Asakusa, Taito-ku, Tokyo 111-0032</p><div class="address-map"><iframe title="CREVIA ASAKUSA 주변 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=5-6-10%20Asakusa%20Taito-ku%20Tokyo&amp;z=15&amp;output=embed"></iframe></div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=Crevia+Asakusa+5-6-10" target="_blank" rel="noopener">Google Maps에서 열기 ↗</a></div>
+
+  </aside>
+ </div>
+ <footer class="footer"><a href="#main">← 메인으로</a><span>개인 항공권번호·예약번호·바코드 등은 공개 사이트에 게시하지 않았습니다.</span></footer>
+</div>
+</section>
+<section class="page" data-view="2026-10-30">
+<div class="shell">
+<div class="day-kicker english">DAY 02 / FRI · 30 OCTOBER 2026</div>
+<div class="day-title"><h1>10월 30일 금요일</h1></div>
+<div class="arrival-hero">
+ <div class="arrival-flight day30-hero"><div class="flightno">DAY 02</div><div class="day30-sub english">TOKYO INTERNATIONAL FILM FESTIVAL<br>YURAKUCHO / KYOBASHI<br>EBISU / NAKAMEGURO / SHINJUKU</div></div>
+ <img src="assets/photos/tokyo-skyline.jpg" alt="도쿄 도심 전경">
+</div>
+<div class="arrival-layout">
+ <div>
+  <div class="pretitle english">DAY ROUTE</div>
+  <h2 style="font-size:27px;margin:0 0 12px">DAY 2 주요 일정</h2>
+  <div class="timeline">
+<article class="event"><div class="hour">08:30–09:15</div><div><h3>Crevia Asakusa → THE GATE HOTEL RYOGOKU</h3><p>호텔 프런트에 짐 보관.</p><small>추천 경로: 도에이 아사쿠사선 아사쿠사역 → 아사쿠사바시역 → JR 소부선 료고쿠역.</small></div></article>
+<article class="event"><div class="hour">09:15–10:30</div><div><h3>료고쿠 → 유라쿠초 · 휴릭 홀 도쿄</h3><small>추천 경로: JR 소부선 료고쿠역 → 아키하바라역 환승 → JR 야마노테선 유라쿠초역.</small></div></article>
+<article class="event"><div class="hour">11:10–14:00</div><div><h3>DISPLACEMENT FILM FUND 단편 묶음 상영 + Q&A</h3><p>휴릭 홀 도쿄 · 단편 5편, 본편 133분(13:23경 종료). 케이트 블란쳇 참석 Q&A.</p></div></article>
+<article class="event"><div class="hour">14:00–14:45</div><div><h3>간단한 점심 · 교바시 이동</h3><p>유라쿠초에서 오니기리·샌드위치 등 간단히 먹고 국립영화아카이브로 이동.</p></div></article>
+<article class="event"><div class="hour">15:00–16:25</div><div><h3>Street of Shame · 미조구치 겐지 복원판</h3><p>국립영화아카이브 · 85분 상영.</p></div></article>
+<article class="event"><div class="hour">16:25–17:30</div><div><h3>교바시 → 에비스 · 도쿄도사진미술관</h3><p>도쿄메트로 긴자선 교바시역 → 신바시역 환승 → JR 야마노테선 에비스역.</p></div></article>
+<article class="event"><div class="hour">17:30–18:20</div><div><h3>도쿄도사진미술관 ① Assembling Anew</h3><p>3층 · 일본 신진작가들의 현대 사진·영상 전시. 일반 ¥700.</p></div></article>
+<article class="event"><div class="hour">18:20–19:00</div><div><h3>도쿄도사진미술관 ② Duet: Asian Contemporary</h3><p>2층 · 일본과 중국의 현대 사진·영상 전시. 일반 ¥900.</p></div></article>
+<article class="event"><div class="hour">19:00–19:45</div><div><h3>나카메구로 이동 · 메구로강 산책</h3><p>전시 종료 후 나카메구로 식당으로 이동.</p><small>도보 25–35분가량 예상.</small></div></article>
+<article class="event"><div class="hour">19:45–21:00</div><div><h3>저녁 · 야노스케 / 야키토리 아키라</h3><p>A. 창작 일식 ‘야노스케’ - 오마카세(계절 돌솥밥, 회 3종 모둠, 계절 채소, 가리비 멘치 등) 6,980엔<br>B. 메구로강변 닭구이 ‘야키토리 아키라’ - 숯불 구이 코스 5,900엔</p></div></article>
+<article class="event"><div class="hour">21:00–21:40</div><div><h3>나카메구로 → 신주쿠 니초메</h3><p>도큐 도요코선·도쿄메트로 후쿠토신선 직통으로 신주쿠산초메역, 이후 도보. 이동 총 30~40분 예상.</p></div></article>
+<article class="event"><div class="hour">22:00–23:35경</div><div><h3>나이트라이프</h3><p>A. EAGLE TOKYO BLUE — 니초메에서 첫 잔 마시기 좋은 바.<br>B. NEW SAZAE — 레트로 디스코와 음악 중심의 댄스바.</p><small>New Sazae는 22시부터 시작.</small></div></article>
+<article class="event"><div class="hour">23:40 전후 출발</div><div><h3>료고쿠 호텔 귀가 · 막차 또는 택시</h3><p>전철 귀가 시 23:40 전후 니초메에서 나와 역으로. 더 놀고 싶다면 심야 택시 고려.</p></div></article>
+  </div>
+ </div>
+ <aside>
+  <div class="tripchecks"><div class="pretitle english">DAY 02 / HIGHLIGHTS</div><h3 style="font-size:21px;margin:0 0 12px">오늘의 핵심</h3><div class="highlights"><div>□ DFF 상영 + 케이트 블란쳇 Q&A</div><div>□ 미조구치 복원판 관람</div><div>□ 도쿄도사진미술관 전시</div><div>□ 나카메구로 저녁 예약</div><div>□ EAGLE BLUE / NEW SAZAE 중 선택</div><div>□ 료고쿠 막차 확인</div></div></div>
+  <div class="sidebox"><div class="tag english">STAY / RYOGOKU</div><h3>THE GATE HOTEL RYOGOKU</h3><p>10월 30일 체크인 — 11월 3일 체크아웃<br>1-2-13 Yokoami, Sumida-ku, Tokyo 130-0015</p><div class="address-map"><iframe title="THE GATE HOTEL RYOGOKU 주변 지도" loading="lazy" src="https://maps.google.com/maps?q=THE%20GATE%20HOTEL%20RYOGOKU&amp;z=15&amp;output=embed"></iframe></div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=The+Gate+Hotel+Ryogoku" target="_blank" rel="noopener">호텔 지도 ↗</a></div>
+  <div class="sidebox"><div class="tag english">ESTIMATE BUDGET</div><h3>1인 예상 기본 비용</h3><p>교통비·추가 음료·택시비 제외한 대략적인 예산. 입장료·현장 이벤트별 금액은 예매 시 최종 확인.</p><div class="budget-list"><strong>식비</strong><div>간단한 점심 <b>¥500–1,100</b></div><div>커피·간식 <b>¥500–900</b></div><div>저녁 <b>¥5,000–8,000</b></div><strong>영화·전시·클럽</strong><div>영화 2편 <b>¥4,000</b></div><div>사진미술관 2개 <b>¥1,600</b></div><div>클럽 <b>방문 장소·이벤트에 따라 상이</b></div><strong>참고 합계</strong><div class="money">약 ¥11,600–15,600 + 클럽 입장료</div><small>영화 1편만 관람하는 경우 감소. 교통·음료·택시 별도.</small></div></div>
+ </aside>
+</div>
+<section class="day30-lower">
+
+ <div class="section-head"><h2>도쿄국제영화제</h2></div>
+ <div class="day30-card-grid">
+<div class="sidebox"><div class="tag english">FILM / OPTION A</div><h3>Displacement Film Fund</h3><img class="day30-venue-image" src="assets/photos/film-displacement.jpg" alt="Displacement Film Fund 대표 사진" loading="lazy"><dl class="venue-facts"><div><dt>상영</dt><dd>10월 30일 11:10 · 휴릭 홀 도쿄</dd></div><div><dt>프로그램</dt><dd>단편 5편 · 133분 · 케이트 블란쳇 참석 Q&A</dd></div><div><dt>예매</dt><dd>10월 17일(토) 14:00 일반 판매</dd></div></dl><div class="money">일반 ¥2,700</div><a class="btn-link" href="https://2026.tiff-jp.net/ja/lineup/film/39004GLS15" target="_blank" rel="noopener">작품 정보 ↗</a><a class="btn-link" href="https://2026.tiff-jp.net/ja/ticket/" target="_blank" rel="noopener">예매 안내 ↗</a></div>
+<div class="sidebox"><div class="tag english">FILM / OPTION B</div><h3>Street of Shame</h3><img class="day30-venue-image" src="assets/photos/film-street-of-shame.jpg" alt="Street of Shame 대표 사진" loading="lazy"><dl class="venue-facts"><div><dt>상영</dt><dd>10월 30일 15:00 · 국립영화아카이브</dd></div><div><dt>프로그램</dt><dd>미조구치 겐지 · 디지털 복원판 · 85분</dd></div><div><dt>예매</dt><dd>10월 27일(화) 12:00 판매</dd></div></dl><div class="money">일반 ¥1,300</div><a class="btn-link" href="https://www.nfaj.go.jp/film-program/tiff-nfaj202610/" target="_blank" rel="noopener">상영 정보 ↗</a><a class="btn-link" href="https://www.e-tix.jp/nfaj/" target="_blank" rel="noopener">온라인 예매 ↗</a></div>
+ </div>
+ <div class="section-head" style="margin-top:34px"><h2>전시</h2></div>
+ <div class="day30-card-grid">
+<div class="sidebox"><div class="tag english">EXHIBITION / OPTION A</div><h3>Assembling Anew: Memories, Materials, Context, Technology</h3><img class="day30-venue-image" src="assets/photos/exhibition-assembling-anew.jpg" alt="Assembling Anew: Memories, Materials, Context, Technology 대표 사진" loading="lazy"><dl class="venue-facts"><div><dt>기간</dt><dd>2026.09.30–2027.01.17</dd></div><div><dt>내용</dt><dd>기억·이미지·기술을 탐구하는 일본 신진 사진·영상작가 5인의 작품</dd></div><div><dt>관람</dt><dd>17:30–18:20 · 약 50분</dd></div></dl><div class="money">일반 ¥700</div><a class="btn-link" href="https://topmuseum.jp/exhibition/5423/?lang=en" target="_blank" rel="noopener">전시 상세 ↗</a></div>
+<div class="sidebox"><div class="tag english">EXHIBITION / OPTION B</div><h3>Duet: Asian Contemporary</h3><img class="day30-venue-image" src="assets/photos/exhibition-duet.jpg" alt="Duet: Asian Contemporary 대표 사진" loading="lazy"><dl class="venue-facts"><div><dt>기간</dt><dd>2026.09.30–2027.01.17</dd></div><div><dt>내용</dt><dd>일본·중국 현대 사진과 영상 작업을 함께 소개</dd></div><div><dt>관람</dt><dd>18:20–19:00 · 약 40분</dd></div></dl><div class="money">일반 ¥900</div><a class="btn-link" href="https://topmuseum.jp/exhibition/5421/" target="_blank" rel="noopener">전시 상세 ↗</a></div>
+ </div>
+ <div class="section-head" style="margin-top:34px"><h2>식사 후보</h2><span></span></div>
+ <h3 class="meal-subhead">점심</h3><div class="day30-card-grid">
+<div class="sidebox"><div class="tag english">LUNCH / OPTION A</div><h3>maimai · 오니기리</h3><img class="day30-venue-image" src="assets/photos/lunch-maimai.jpg" alt="maimai · 오니기리 대표 사진" loading="lazy"><dl class="venue-facts"><div><dt>장소</dt><dd>유라쿠초 도쿄 교통회관 지하 1층</dd></div><div><dt>메뉴</dt><dd>연어·다시마 등 오니기리 1–2개</dd></div><div><dt>방문</dt><dd>짧은 점심에 적합한 간단한 식사</dd></div></dl><div class="money">약 ¥500–900</div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=maimai+onigiri+Yurakucho" target="_blank" rel="noopener">Google Maps ↗</a></div>
+<div class="sidebox"><div class="tag english">LUNCH / OPTION B</div><h3>THE CITY BAKERY · 교바시</h3><img class="day30-venue-image" src="assets/photos/lunch-city-bakery.jpg" alt="THE CITY BAKERY · 교바시 대표 사진" loading="lazy"><dl class="venue-facts"><div><dt>장소</dt><dd>교바시 TODA BUILDING 1층</dd></div><div><dt>추천 메뉴</dt><dd>샌드위치 · 미니 반스 샌드(우엉) ¥450</dd></div><div><dt>커피</dt><dd>블렌드 커피 S ¥440 / M ¥520</dd></div><div><dt>방문</dt><dd>국립영화아카이브 이동 전 간단한 식사</dd></div></dl><div class="money">샌드 + 커피 S 약 ¥890</div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=THE+CITY+BAKERY+京橋+TODA" target="_blank" rel="noopener">Google Maps ↗</a></div>
+</div>
+<h3 class="meal-subhead">저녁</h3>
+<div class="day30-card-grid">
+<div class="sidebox"><div class="tag english">DINNER / OPTION A</div><h3>야노스케 · 弥之助</h3><img class="day30-venue-image" src="assets/photos/dinner-yanosuke.jpg" alt="야노스케 · 弥之助 대표 사진" loading="lazy"><dl class="venue-facts"><div><dt>지역</dt><dd>나카메구로 · 창작 일식 이자카야</dd></div><div><dt>추천 메뉴</dt><dd>가리비 멘치카츠, 생선회, 제철 솥밥</dd></div><div><dt>방문</dt><dd>19:45–21:00 · 사전 예약 추천</dd></div><div><dt>분위기</dt><dd>요리와 대화에 집중하는 저녁</dd></div></dl><div class="money">약 ¥6,000–8,000 / 1인</div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=中目黒+弥之助" target="_blank" rel="noopener">Google Maps ↗</a><a class="btn-link" href="https://tabelog.com/tokyo/A1317/A131701/13312586/" target="_blank" rel="noopener">타베로그 예약 ↗</a></div>
+<div class="sidebox"><div class="tag english">DINNER / OPTION B</div><h3>야키토리 아키라 · 焼鶏あきら</h3><img class="day30-venue-image" src="assets/photos/dinner-akira.jpg" alt="야키토리 아키라 · 焼鶏あきら 대표 사진" loading="lazy"><dl class="venue-facts"><div><dt>지역</dt><dd>나카메구로 · 메구로강변</dd></div><div><dt>추천 메뉴</dt><dd>닭 숯불구이, 부위별 모둠구이</dd></div><div><dt>방문</dt><dd>19:45–21:00 · 사전 예약 추천</dd></div><div><dt>분위기</dt><dd>메구로강 산책 후 숯불구이</dd></div></dl><div class="money">약 ¥5,000–6,000 / 1인</div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=焼鶏あきら+中目黒本店" target="_blank" rel="noopener">Google Maps ↗</a><a class="btn-link" href="https://tabelog.com/tokyo/A1317/A131701/13019676/" target="_blank" rel="noopener">타베로그 예약 ↗</a></div>
+ </div>
+ <div class="section-head" style="margin-top:34px"><h2>클럽</h2></div>
+ <div class="day30-card-grid">
+<div class="sidebox"><div class="tag english">CLUB / OPTION A</div><h3>EAGLE TOKYO BLUE</h3><img class="day30-venue-image" src="assets/photos/club-eagle-blue.jpg" alt="EAGLE TOKYO BLUE 대표 사진" loading="lazy"><dl class="venue-facts"><div><dt>소개</dt><dd>니초메에서 가볍게 첫 잔 마시기 좋은 바</dd></div><div><dt>방문</dt><dd>21:40 이후</dd></div></dl><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=EAGLE+TOKYO+BLUE" target="_blank" rel="noopener">Google Maps ↗</a></div>
+<div class="sidebox"><div class="tag english">CLUB / OPTION B</div><h3>NEW SAZAE</h3><img class="day30-venue-image" src="assets/photos/club-new-sazae.jpg" alt="NEW SAZAE 대표 사진" loading="lazy"><dl class="venue-facts"><div><dt>소개</dt><dd>레트로 디스코와 음악 중심의 댄스바</dd></div><div><dt>영업</dt><dd>22:00부터 시작</dd></div></dl><a class="btn-link" href="https://x.com/NEWSAZAE1966" target="_blank" rel="noopener">공식 X ↗</a><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=New+Sazae+Shinjuku" target="_blank" rel="noopener">Google Maps ↗</a></div>
+ </div>
+ <div class="section-head" style="margin-top:34px"><h2>숙소 귀가 플랜</h2></div>
+ <div class="day30-card-grid">
+<div class="sidebox"><div class="tag english">RETURN / OPTION A</div><h3>지하철 막차 이용</h3><dl class="venue-facts"><div><dt>출발 목표</dt><dd>23:35–23:45 사이 클럽에서 나오기</dd></div><div><dt>경로</dt><dd>신주쿠산초메 → 신주쿠니시구치 → 오에도선 료고쿠</dd></div><div><dt>지난 조회 참고</dt><dd>00:16경 출발 / 00:50경 도착 (보장되지 않음)</dd></div><div><dt>필수</dt><dd>10월 30일 당일 막차·환승 확인</dd></div></dl><div class="money">IC ¥317</div><a class="btn-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=Shinjuku+Sanchome+Station&amp;destination=The+Gate+Hotel+Ryogoku&amp;travelmode=transit" target="_blank" rel="noopener">경로 확인 ↗</a></div>
+<div class="sidebox"><div class="tag english">RETURN / OPTION B</div><h3>심야 택시</h3><dl class="venue-facts"><div><dt>구간</dt><dd>신주쿠 니초메 → THE GATE HOTEL RYOGOKU</dd></div><div><dt>소요</dt><dd>교통 상황에 따라 약 25–40분</dd></div><div><dt>장점</dt><dd>자정 이후에도 여유 있게 클럽 즐기기</dd></div><div><dt>유의</dt><dd>심야 할증·호출료·정체에 따라 달라짐</dd></div></dl><div class="money">약 ¥5,000–7,000</div><a class="btn-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=Shinjuku+Nichome+Tokyo&amp;destination=The+Gate+Hotel+Ryogoku&amp;travelmode=driving" target="_blank" rel="noopener">택시 경로 ↗</a></div>
+ </div>
+</section>
+<footer class="footer"><a href="#main">← 메인 페이지</a></footer>
+</div>
+</section>
+<section class="page" data-view="2026-10-31">
+<div class="shell">
+<div class="day-kicker english">DAY 03 / SAT · 31 OCTOBER 2026</div>
+<div class="day-title"><h1>10월 31일 토요일</h1></div>
+<div class="arrival-hero"><div class="arrival-flight day30-hero"><div class="flightno">DAY 03</div><div class="day30-sub english">SHIMOKITAZAWA / VINTAGE SHOPPING<br>BONUS TRACK / BOOK & BEER<br>SEIJO / THE MOMENT JAZZ CLUB</div></div><img src="assets/photos/tokyo-skyline.jpg" alt="도쿄 풍경"></div>
+<div class="arrival-layout"><div><div class="pretitle english">DAY ROUTE</div><h2 style="font-size:27px;margin:0 0 12px">DAY 3 주요 일정</h2><div class="timeline"><article class="event"><div class="hour">10:30–11:30</div><div><h3>료고쿠 → 시모키타자와</h3><p>호텔에서 출발해 시모키타자와로 이동.</p><small>출발 시간은 점심 선택에 따라 조정 가능.</small></div></article>
+<article class="event"><div class="hour">11:30–12:30</div><div><h3>점심 · 세 곳 중 선택</h3><p>A. 구 야무테이 시모키타소 · B. 나스 오야지 · C. ANDON</p><small>토요일 대기 시간 고려.</small></div></article>
+<article class="event"><div class="hour">12:30–14:30</div><div><h3>빈티지 숍 ① · 저가 구제와 아메카지</h3><p>Stick Out · FLORIDA → FLAMINGO · 古着屋JAM 등.</p><small>실제 매장 영업시간과 점심 위치에 따라 조정.</small></div></article>
+<article class="event"><div class="hour">14:30–15:45</div><div><h3>빈티지 숍 ② · 혼합 구제와 브랜드</h3><p>NEW YORK JOE → RAGTAG 또는 meadow by FLAMINGO.</p><small>3~5곳 정도를 집중 방문하는 편이 좋아.</small></div></article>
+<article class="event"><div class="hour">15:45–16:40</div><div><h3>BONUS TRACK · 본야 B&B</h3><p>독립서점, 일기 전문점, 레코드숍과 작은 상점 구경.</p><small>저녁 행사 전 일반 영업 가능 범위를 확인.</small></div></article>
+<article class="event"><div class="hour">16:40–17:10</div><div><h3>세이조가쿠엔마에 이동</h3><p>오다큐선 시모키타자와역 → 세이조가쿠엔마에역.</p><small>이동 중 급행·각역정차 정차역 확인.</small></div></article>
+<article class="event"><div class="hour">17:10–18:30</div><div><h3>저녁 · 세 곳 중 선택</h3><p>A. 식사처 쓰다 · B. 코토부키야 · C. 깃쇼안.</p><small>친구와 결정 · 공연 19시 입장 전에 마무리.</small></div></article>
+<article class="event"><div class="hour">19:00 / 19:30</div><div><h3>THE MOMENT · 소타 씨 재즈 공연</h3><p>19:00 입장 / 19:30 시작 · 2명 티켓 예약·결제 완료.</p><small>공연 종료 시각 미확정.</small></div></article>
+<article class="event"><div class="hour">공연 후</div><div><h3>전철로 료고쿠 호텔 귀가</h3><p>세이조가쿠엔마에 → 신주쿠 → JR 소부선 료고쿠.</p><small>막차 및 최종 환승은 당일 확인.</small></div></article></div></div>
+<aside><div class="tripchecks"><div class="pretitle english">DAY 03 / HIGHLIGHTS</div><h3 style="font-size:21px;margin:0 0 12px">오늘의 핵심</h3><div class="highlights"><div>□ 점심 3곳 중 선택</div><div>□ 저가 구제·아메카지·브랜드 빈티지 쇼핑</div><div>□ BONUS TRACK · 본야 B&B</div><div>□ 저녁 3곳 중 선택</div><div>✓ THE MOMENT 재즈 공연 2명 예약 완료</div><div>□ 공연 후 료고쿠 귀가 막차 확인</div></div></div>
+<div class="sidebox"><div class="tag english">STAY / RYOGOKU</div><h3>THE GATE HOTEL RYOGOKU</h3><p>10월 30일 체크인 — 11월 3일 체크아웃<br>1-2-13 Yokoami, Sumida-ku, Tokyo 130-0015</p></div>
+<div class="sidebox"><div class="tag english">ESTIMATE BUDGET</div><h3>1인 예상 예산</h3><div class="budget-list"><div>점심 <b>¥1,000–2,000</b></div><div>저녁 <b>¥1,200–4,000</b></div><div>귀가 전철 <b>약 ¥483</b></div><div>현장 음료·교통 <b>별도</b></div><strong>당일 기본 지출(쇼핑 제외)</strong><div class="money">약 ¥2,683–6,483 + 기타</div><small>공연 티켓 ¥5,500/인은 결제 완료되어 중복 합산하지 않음. 쇼핑 비용은 개인별로 상이.</small></div></div></aside></div>
+<section class="day30-lower">
+<div class="section-head"><h2>점심 후보</h2></div><div class="day30-card-grid day31-three"><div class="sidebox"><div class="tag english">LUNCH / OPTION A</div><h3>구 야무테이 시모키타소 · 旧ヤム邸 シモキタ荘</h3><dl class="venue-facts"><div><dt>메뉴</dt><dd>창작 스파이스 카레 · 개성 있는 키마와 제철 재료</dd></div><div><dt>방문</dt><dd>인기점 · 토요일 대기 고려</dd></div><div><dt>특징</dt><dd>시모키타자와에서 특별한 카레 한 끼</dd></div></dl><div class="money">약 ¥1,300–2,000</div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%97%A7%E3%83%A4%E3%83%A0%E9%82%B8+%E3%82%B7%E3%83%A2%E3%82%AD%E3%82%BF%E8%8D%98" target="_blank" rel="noopener">Google Maps ↗</a></div>
+<div class="sidebox"><div class="tag english">LUNCH / OPTION B</div><h3>나스 오야지 · 茄子おやじ</h3><dl class="venue-facts"><div><dt>메뉴</dt><dd>일본식 카레라이스</dd></div><div><dt>특징</dt><dd>레코드 음악과 레트로한 실내 분위기</dd></div><div><dt>방문</dt><dd>쇼핑 전 편하게 점심</dd></div></dl><div class="money">약 ¥1,000–2,000</div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E8%8C%84%E5%AD%90%E3%81%8A%E3%82%84%E3%81%98+%E4%B8%8B%E5%8C%97%E6%B2%A2" target="_blank" rel="noopener">Google Maps ↗</a></div>
+<div class="sidebox"><div class="tag english">LUNCH / OPTION C</div><h3>ANDON · お粥とお酒</h3><dl class="venue-facts"><div><dt>메뉴</dt><dd>일본식 죽 · 오니기리 · 아키타 지역 요리</dd></div><div><dt>장소</dt><dd>BONUS TRACK 안</dd></div><div><dt>방문</dt><dd>선택 시 서점·상점 방문을 점심 직후로 이동 가능</dd></div></dl><div class="money">약 ¥1,000–1,800</div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=ANDON+BONUS+TRACK+Shimokitazawa" target="_blank" rel="noopener">Google Maps ↗</a></div></div>
+<div class="section-head" style="margin-top:34px"><h2>빈티지 숍 · 목적별 추천</h2></div><div class="day30-card-grid"><div class="sidebox"><div class="tag english">VINTAGE / LOW BUDGET</div><h3>저가 구제 · 보물찾기</h3><dl class="venue-facts"><div><dt>Stick Out</dt><dd>균일가 구제 · 티셔츠·셔츠·데님 등, 현장 가격 확인</dd></div><div><dt>FLORIDA</dt><dd>저가 수입 구제와 캐주얼 · 주말 할인 여부 확인</dd></div><div><dt>팁</dt><dd>브랜드보다 옷 상태·핏 먼저 확인</dd></div></dl><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=Stick+Out+Shimokitazawa" target="_blank" rel="noopener">Google Maps ↗</a></div>
+<div class="sidebox"><div class="tag english">VINTAGE / AMERICANA</div><h3>아메카지 · 미국 빈티지</h3><dl class="venue-facts"><div><dt>FLAMINGO</dt><dd>데님·스웨트·미국/유럽 빈티지</dd></div><div><dt>古着屋JAM</dt><dd>리바이스·칼하트·챔피언 계열을 찾아보기 좋은 매장</dd></div><div><dt>팁</dt><dd>빈티지 501은 연식·생산국에 따라 가격 차이 큼</dd></div></dl><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=FLAMINGO+Shimokitazawa" target="_blank" rel="noopener">Google Maps ↗</a></div>
+<div class="sidebox"><div class="tag english">VINTAGE / MIX</div><h3>혼합 구제 · 뜻밖의 발견</h3><dl class="venue-facts"><div><dt>NEW YORK JOE</dt><dd>옛 목욕탕을 개조한 매장 · 폭넓은 구제 의류</dd></div><div><dt>특징</dt><dd>옷 구경과 공간 방문 자체가 재미있는 곳</dd></div><div><dt>팁</dt><dd>일요일 세일 정보를 토요일 일정과 혼동하지 않기</dd></div></dl><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=NEW+YORK+JOE+EXCHANGE+Shimokitazawa" target="_blank" rel="noopener">Google Maps ↗</a></div>
+<div class="sidebox"><div class="tag english">VINTAGE / DESIGNER</div><h3>디자이너 · 선별 빈티지</h3><dl class="venue-facts"><div><dt>RAGTAG</dt><dd>꼼데가르송·요지 야마모토 등 브랜드 리유스 비교</dd></div><div><dt>meadow by FLAMINGO</dt><dd>차분한 셀렉션의 빈티지 편집숍</dd></div><div><dt>팁</dt><dd>브랜드 재고는 매일 달라짐 · 원하는 브랜드는 직원에게 문의</dd></div></dl><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=RAGTAG+Shimokitazawa" target="_blank" rel="noopener">Google Maps ↗</a></div></div>
+<div class="sidebox" style="margin-top:16px"><div class="tag english">SHOPPING ROUTE</div><h3>추천 동선 · 남쪽 → 북쪽 → BONUS TRACK</h3><dl class="venue-facts"><div><dt>12:30–13:20</dt><dd>남쪽 저가 구제 · Stick Out / FLORIDA</dd></div><div><dt>13:20–14:20</dt><dd>북쪽 아메카지 · FLAMINGO / JAM</dd></div><div><dt>14:20–15:10</dt><dd>NEW YORK JOE · 옛 목욕탕 매장 구경</dd></div><div><dt>15:10–15:45</dt><dd>RAGTAG 또는 meadow by FLAMINGO</dd></div><div><dt>15:45–16:40</dt><dd>BONUS TRACK · 본야 B&B · 레코드숍</dd></div><div><dt>쇼핑 팁</dt><dd>실측·얼룩·수선 상태 확인, 처음엔 가격 비교. 재고·영업시간은 당일 확인</dd></div></dl></div>
+<div class="section-head" style="margin-top:34px"><h2>BONUS TRACK · 본야 B&B</h2></div><div class="day30-card-grid"><div class="sidebox"><div class="tag english">BOOKS / CULTURE</div><h3>BONUS TRACK</h3><dl class="venue-facts"><div><dt>소개</dt><dd>철도 부지에 조성된 독립 상점과 작은 광장</dd></div><div><dt>볼거리</dt><dd>日記屋 月日(일기 전문점) · 레코드숍 · 카페</dd></div><div><dt>특징</dt><dd>서점·음악·라이프스타일 공간이 가까이 모여 있음</dd></div></dl><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=BONUS+TRACK+Shimokitazawa" target="_blank" rel="noopener">Google Maps ↗</a></div><div class="sidebox"><div class="tag english">BOOKSTORE / EVENT</div><h3>本屋 B&B · BOOK & BEER</h3><dl class="venue-facts"><div><dt>소개</dt><dd>책과 음료, 작가 토크를 결합한 독립서점</dd></div><div><dt>방문</dt><dd>오후 15:45–16:40 안에서 유동적 방문</dd></div><div><dt>10/31 행사</dt><dd>19:00 쓰쓰이 도모미 × 다케나카 나오토 토크 · 재즈 공연과 겹쳐 참석 제외</dd></div><div><dt>참고</dt><dd>행사 준비로 이용 제한이 있을 수 있음</dd></div></dl><a class="btn-link" href="https://bookandbeer.com/" target="_blank" rel="noopener">Google Maps ↗</a></div></div>
+<div class="section-head" style="margin-top:34px"><h2>저녁 식사 후보</h2></div><div class="day30-card-grid day31-three"><div class="sidebox"><div class="tag english">DINNER / OPTION A</div><h3>식사처 쓰다 · 食事処つだ</h3><dl class="venue-facts"><div><dt>분위기</dt><dd>소박한 일본 가정식·동네 식당</dd></div><div><dt>추천</dt><dd>도로로메시, 따뜻한 밥·일본식 요리</dd></div><div><dt>영업</dt><dd>토요일 17:00부터 안내 · 현장 재확인</dd></div><div><dt>위치</dt><dd>THE MOMENT 인근 · 도보 수분</dd></div><div><dt>방문</dt><dd>현장 방문 중심 · 만석이면 다음 후보로 이동</dd></div></dl><div class="money">약 ¥1,500–3,000</div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E9%A3%9F%E4%BA%8B%E5%87%A6%E3%81%A4%E3%81%A0+%E6%88%90%E5%9F%8E" target="_blank" rel="noopener">Google Maps ↗</a></div>
+<div class="sidebox"><div class="tag english">DINNER / OPTION B</div><h3>코토부키야 · 魚と酒 ことぶきや</h3><dl class="venue-facts"><div><dt>분위기</dt><dd>생선구이·계란말이·튀김·작은 요리</dd></div><div><dt>가격 예시</dt><dd>다시마키 ¥682 · 굴튀김 ¥825 · 볶음밥 ¥935</dd></div><div><dt>영업</dt><dd>토요일 17:00–23:00 안내</dd></div><div><dt>위치</dt><dd>세이조가쿠엔마에역 주변</dd></div><div><dt>방문</dt><dd>단품 요리 선택 · 술 주문 없이도 식사 가능</dd></div></dl><div class="money">약 ¥2,500–4,000</div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E9%AD%9A%E3%81%A8%E9%85%92+%E3%81%93%E3%81%A8%E3%81%B6%E3%81%8D%E3%82%84+%E6%88%90%E5%9F%8E" target="_blank" rel="noopener">Google Maps ↗</a></div>
+<div class="sidebox"><div class="tag english">DINNER / OPTION C</div><h3>깃쇼안 · 吉祥庵 成城学園店</h3><dl class="venue-facts"><div><dt>분위기</dt><dd>메밀 소바·튀김·다시마키 계란</dd></div><div><dt>가격 예시</dt><dd>모리소바 ¥780 · 덴모리소바 ¥1,550</dd></div><div><dt>영업</dt><dd>토요일 11:30–21:30 안내</dd></div><div><dt>위치</dt><dd>세이조가쿠엔마에역 도보 약 3분</dd></div><div><dt>방문</dt><dd>술 없이 편하게 식사하기 좋은 대안</dd></div></dl><div class="money">약 ¥1,200–2,500</div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E5%90%89%E7%A5%A5%E5%BA%B5+%E6%88%90%E5%9F%8E%E5%AD%A6%E5%9C%92%E5%BA%97" target="_blank" rel="noopener">Google Maps ↗</a></div></div>
+<div class="section-head" style="margin-top:34px"><h2>재즈 공연</h2></div><div class="day30-card-grid"><div class="sidebox"><div class="tag english">PERFORMANCE / RESERVED</div><h3>草田一駿 Trio α · THE MOMENT</h3><dl class="venue-facts"><div><dt>날짜</dt><dd>2026년 10월 31일(토)</dd></div><div><dt>시간</dt><dd>19:00 입장 · 19:30 시작</dd></div><div><dt>장소</dt><dd>THE MOMENT JAZZ CLUB · 세이조가쿠엔마에</dd></div><div><dt>예약</dt><dd>2명 · 티켓 ¥11,000 결제 완료</dd></div><div><dt>현장</dt><dd>서비스 차지·음료 등 별도 지출 가능</dd></div><div><dt>주의</dt><dd>정확한 종료시각은 공연 진행에 따라 다름</dd></div></dl><div class="money">티켓 ¥5,500 / 1인 · 결제 완료</div><a class="btn-link" href="https://www.google.com/maps/search/?api=1&amp;query=THE+MOMENT+JAZZ+CLUB+Seijo" target="_blank" rel="noopener">Google Maps ↗</a></div></div>
+<div class="section-head" style="margin-top:34px"><h2>숙소 귀가 플랜</h2></div><div class="day30-card-grid"><div class="sidebox"><div class="tag english">RETURN / TRAIN ONLY</div><h3>전철로 료고쿠 호텔 귀가</h3><dl class="venue-facts"><div><dt>출발</dt><dd>THE MOMENT → 세이조가쿠엔마에역 도보</dd></div><div><dt>경로</dt><dd>오다큐선 세이조가쿠엔마에 → 신주쿠 · JR 소부선 환승 → 료고쿠역</dd></div><div><dt>소요</dt><dd>전철 약 45–55분 + 도보 · 열차별 상이</dd></div><div><dt>유의</dt><dd>공연 종료 후 인사 시간이 길어질 수 있으니 당일 최종 환승 막차 확인</dd></div><div><dt>숙소</dt><dd>THE GATE HOTEL RYOGOKU</dd></div></dl><div class="money">IC 약 ¥483 / 1인</div><a class="btn-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=THE+MOMENT+JAZZ+CLUB+Seijo&amp;destination=The+Gate+Hotel+Ryogoku&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps ↗</a></div></div>
+</section><footer class="footer"><a href="#main">← 메인 페이지</a><div>운영시간·가격·교통편은 방문 전 최종 확인.</div></footer>
+</div></section>
+<section class="page" data-view="empty" id="empty-page">
+ <div class="shell"><div class="empty-wrap"><div class="pretitle english">TOKYO 2026 · DAILY NOTES</div><h2 id="empty-title">다음 날짜 일정</h2><p id="empty-sub">이날의 일정은 다음에 함께 채워나갈 예정이야.</p><p><a class="btn-link" href="#main">메인으로 돌아가기 ↗</a></p></div></div>
+</section>
+</main>
+
+<script>
+(function(){
+ var buttons=Array.prototype.slice.call(document.querySelectorAll('[data-page]'));
+ var views=Array.prototype.slice.call(document.querySelectorAll('[data-view]'));
+ var weekdays={ '2026-10-29':'목요일', '2026-10-30':'금요일', '2026-10-31':'토요일', '2026-11-01':'일요일', '2026-11-02':'월요일', '2026-11-03':'화요일', '2026-11-04':'수요일', '2026-11-05':'목요일', '2026-11-06':'금요일', '2026-11-07':'토요일' };
+ function go(){
+   var key=decodeURIComponent(location.hash.replace('#',''))||'2026-10-31';
+   if(key!=='main'&&!weekdays[key])key='main';
+   var view=key==='main'?'main':(key==='2026-10-29'||key==='2026-10-30'||key==='2026-10-31')?key:'empty';
+   views.forEach(function(el){el.classList.toggle('active',el.getAttribute('data-view')===view)});
+   buttons.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-page')===key);btn.setAttribute('aria-current',btn.getAttribute('data-page')===key?'page':'false')});
+   if(view==='empty'){var p=key.split('-');document.getElementById('empty-title').textContent=(+p[1])+'월 '+(+p[2])+'일 '+weekdays[key];document.getElementById('empty-sub').textContent=key==='2026-10-29'?'':key==='2026-11-03'?'THE GATE HOTEL RYOGOKU 체크아웃 후 Crevia Asakusa로 숙소를 이동하는 날이야.':key==='2026-11-07'?'Crevia Asakusa 체크아웃 예정. 세부 이동 일정은 미정이야.':'세부 방문지와 시간을 아직 정하지 않았어. 날짜별로 함께 채워나가자.'}
+   window.scrollTo(0,0);
+ }
+ buttons.forEach(function(btn){btn.addEventListener('click',function(){location.hash=btn.getAttribute('data-page');if(location.hash==='#main')go()})});
+ document.addEventListener('error',function(e){var img=e.target;if(img&&img.tagName==='IMG'&&img.dataset.fallback&&img.src.indexOf(img.dataset.fallback)<0){img.src=img.dataset.fallback}},true);
+
+var photoDirectory={
+east:{title:'료고쿠 · 아사쿠사',items:[['센소지','https://commons.wikimedia.org/wiki/Special:Redirect/file/Sensoji.jpg?width=960','assets/photos/asakusa-aerial.jpg'],['스미다강·료고쿠','assets/photos/sumida-sunset.jpg',''],['아사쿠사 주변','assets/photos/asakusa-aerial.jpg','']]},
+central:{title:'히비야 · 유라쿠초',items:[['도쿄국제영화제 / 행사 정보','assets/photos/tokyo-skyline.jpg',''],['히비야 주변 산책','assets/photos/tokyo-garden.jpg',''],['긴자·유라쿠초','assets/photos/tokyo-skyline.jpg','']]},
+ginza:{title:'교바시 · 긴자',items:[['국립영화아카이브','assets/photos/tokyo-skyline.jpg',''],['긴자 거리','assets/photos/tokyo-garden.jpg',''],['영화관 권역','assets/photos/asakusa-aerial.jpg','']]},
+night:{title:'신주쿠 니초메',items:[['EAGLE TOKYO BLUE / 후보','assets/photos/tokyo-skyline.jpg',''],['NEW SAZAE / 후보','assets/photos/sumida-sunset.jpg',''],['신주쿠 주변','assets/photos/tokyo-garden.jpg','']]},
+west:{title:'에비스 · 메구로',items:[['도쿄도사진미술관 / 후보','assets/photos/tokyo-garden.jpg',''],['나카메구로 산책 / 후보','assets/photos/sumida-sunset.jpg',''],['다이칸야마 / 후보','assets/photos/tokyo-skyline.jpg','']]},
+ueno:{title:'우에노',items:[['우에노공원','assets/photos/tokyo-garden.jpg',''],['국립서양미술관','assets/photos/tokyo-skyline.jpg',''],['우에노 주변 산책','assets/photos/asakusa-aerial.jpg','']]},
+kiyosumi:{title:'키요스미시라카와',items:[['도쿄현대미술관','assets/photos/tokyo-garden.jpg',''],['카페와 골목','assets/photos/asakusa-aerial.jpg',''],['스미다 동쪽','assets/photos/sumida-sunset.jpg','']]}
+};
+document.querySelectorAll('[data-region]').forEach(function(el){
+ function show(){
+ var key=el.dataset.region,entry=photoDirectory[key];if(!entry)return;
+ document.querySelectorAll('[data-region]').forEach(function(a){a.classList.toggle('selected',a.dataset.region===key);a.setAttribute('aria-pressed',a.dataset.region===key?'true':'false')});
+ var cap=document.getElementById('region-caption');cap.textContent=entry.title+' / 주요 장소 · 사진은 일부 권역 참고 이미지';
+ var figures=document.querySelectorAll('.moments figure');
+ entry.items.forEach(function(item,i){var img=figures[i].querySelector('img');img.src=item[1];img.alt=item[0];if(item[2])img.setAttribute('data-fallback',item[2]);else img.removeAttribute('data-fallback');figures[i].querySelector('figcaption').textContent=item[0]});
+ }
+ el.addEventListener('click',show);el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();show()}});
+});
+
+ document.querySelectorAll('[data-check]').forEach(function(input){var key='tokyo2026-check-'+input.dataset.check;try{input.checked=localStorage.getItem(key)==='yes'}catch(e){}input.parentElement.classList.toggle('done',input.checked);input.addEventListener('change',function(){input.parentElement.classList.toggle('done',input.checked);try{localStorage.setItem(key,input.checked?'yes':'no')}catch(e){}})});
+ window.addEventListener('hashchange',go);go();
+})();
+</script>
+</body>
+</html>
