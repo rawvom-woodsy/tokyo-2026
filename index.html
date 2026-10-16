@@ -102,6 +102,15 @@ h1{font-size:clamp(38px,5.5vw,76px);margin:0;line-height:1.13;font-weight:750;le
 @media(max-width:1000px){.map-layout,.day-columns{grid-template-columns:1fr}.venues{display:grid;grid-template-columns:repeat(2,1fr)}.day-columns{gap:25px}.hero{height:400px}}
 @media(max-width:700px){.shell{padding:0 19px}.head-inner{display:block;padding:14px 0 0;min-height:unset}.date-nav{justify-content:flex-start;padding:12px 0 8px}.date-nav button{padding:8px 10px}.cover-intro{padding:35px 0 19px;display:block}.cover-dates{text-align:left;margin-top:13px}.hero{height:430px}.hero-caption{left:19px;bottom:19px;display:block}.hero-caption .small{display:block;margin-top:9px}.stay-grid,.moments,.day-title{grid-template-columns:1fr}.stay .photo-wrap{height:235px}.section{padding:38px 0}.section-head h2{font-size:25px}.map-frame{min-height:305px}.venues{grid-template-columns:1fr}.moments{gap:12px}.moment{height:180px}.day-title p{margin-top:15px}.day-photo{height:235px}.event{grid-template-columns:85px 1fr;gap:10px}.event h3{font-size:17px}.event .hour{font-size:11px}.footer{display:block}.footer div+div{margin-top:8px}}
 @media(prefers-reduced-motion:reduce){.page{animation:none}*{scroll-behavior:auto!important;transition:none!important}}
+
+.arrival-hero{display:grid;grid-template-columns:1fr 1fr;background:var(--burg);color:white;margin-top:28px;overflow:hidden}
+.arrival-flight{padding:32px}.arrival-flight .flightno{font:800 42px "Pretendard Variable",sans-serif;letter-spacing:-.04em}.arrival-flight .airports{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0}.arrival-flight .airport{font:800 40px "Pretendard Variable",sans-serif}.arrival-flight .airports small{display:block;font-size:12px;opacity:.76;font-weight:400;letter-spacing:0}.arrival-flight .arrow-air{font-size:25px;opacity:.8}.arrival-flight .flightfoot{font-size:12px;opacity:.75;line-height:1.9}
+.arrival-hero img{width:100%;height:100%;object-fit:cover;max-height:340px}
+.arrival-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:34px;padding:34px 0 60px}
+.transport-options{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}.transport-option{background:#fffdf9;border:1px solid var(--line);padding:18px}.transport-option h3{font-size:16px;margin:0 0 10px}.transport-option p{font-size:12px;line-height:1.85;color:#6d605a}
+.tripchecks{background:#fffdf9;border:1px solid var(--line);padding:22px}.tripcheck{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.55}.tripcheck:last-child{border-bottom:0}.tripcheck input{width:18px;height:18px;accent-color:var(--burg);margin-top:2px;flex:none}.tripcheck.done span{text-decoration:line-through;color:#918782}
+.arrival-note{color:#756a66;font-size:12px;line-height:1.8}.arrival-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.arrival-links a{color:var(--burg);font-size:12px;border-bottom:1px solid var(--burg);text-decoration:none;padding-bottom:3px}
+@media(max-width:850px){.arrival-layout,.arrival-hero{grid-template-columns:1fr}.arrival-hero img{max-height:190px}.transport-options{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -181,12 +190,57 @@ h1{font-size:clamp(38px,5.5vw,76px);margin:0;line-height:1.13;font-weight:750;le
     <figure class="moment" style="margin:0"><img src="assets/photos/tokyo-garden.jpg" alt="도쿄 황거 외원 소나무 정원" loading="lazy"><figcaption>CITY GARDEN / TOKYO</figcaption></figure>
     <figure class="moment" style="margin:0"><img src="assets/photos/asakusa-aerial.jpg" alt="도쿄 동부를 내려다본 풍경" loading="lazy"><figcaption>ASAKUSA / EAST TOKYO</figcaption></figure>
   </div>
-  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><button class="btn-link" type="button" data-region="ueno">UENO / 우에노공원·국립서양미술관 ↗</button><button class="btn-link" type="button" data-region="kiyosumi">KIYOSUMI / 도쿄현대미술관 ↗</button></div>
  </section>
  <footer class="footer"><div class="english">TOKYO 2026 / AN EDITORIAL TRAVEL JOURNAL</div><div>여행 계획은 계속 업데이트됩니다. <a href="#2026-10-30">10월 30일 상세 일정 보기 ↗</a></div></footer>
 </div>
 </section>
 
+<section class="page" data-view="2026-10-29">
+<div class="shell">
+ <div class="day-kicker english">DAY 01 / THU · 29 OCTOBER 2026</div>
+ <div class="day-title"><h1>10월 29일 목요일</h1><p>김포에서 하네다로. 늦은 저녁 도쿄 도착 후 아사쿠사 숙소 체크인까지, 필요한 정보만 모은 첫날의 트래블 브리프.</p></div>
+ <div class="arrival-hero">
+  <div class="arrival-flight"><div class="english" style="font-size:11px;letter-spacing:.2em">KOREAN AIR · INTERNATIONAL</div><div class="flightno">KE2105</div>
+    <div class="airports"><div><span class="airport">GMP</span><small>19:30 · 김포 국제선</small></div><div class="arrow-air">→</div><div><span class="airport">HND</span><small>21:35 · 하네다 T3</small></div></div>
+    <div class="flightfoot">2026.10.29 목요일 / 소요시간 2시간 5분<br>Airbus A330-300 · 일반석 · 위탁수하물 1개</div>
+  </div>
+  <img src="assets/photos/asakusa-aerial.jpg" alt="도쿄 도심 전경">
+ </div>
+ <div class="arrival-layout">
+  <div>
+   <div class="pretitle english">THE ARRIVAL ROUTE</div><h2 style="font-size:27px;margin:0 0 12px">하네다 공항 → CREVIA ASAKUSA</h2>
+   <div class="timeline">
+    <article class="event"><div class="hour">17:30 권장</div><div><h3>김포공항 국제선 터미널 도착</h3><p>대한항공 체크인 및 수하물 위탁. 출발 약 2시간 전 공항 도착을 기준으로 설정.</p></div></article>
+    <article class="event"><div class="hour">19:30–21:35</div><div><h3>KE2105 · 김포 → 하네다</h3><p>하네다공항 제3터미널 도착. 일본 현지시각 기준.</p></div></article>
+    <article class="event"><div class="hour">21:35 이후</div><div><h3>입국심사 · 수하물 수령 · 세관 신고</h3><p>Visit Japan Web QR 준비. 실제 수속 완료 시각에 따라 이후 교통편 결정.</p></div></article>
+    <article class="event"><div class="hour">22시대 예상</div><div><h3>게이큐선 → 아사쿠사 방면</h3><p>하네다 제3터미널에서 게이큐 공항선 탑승. 도에이 아사쿠사선 직통 열차라면 아사쿠사역까지 환승 없이 이동할 수 있어. 목적지 표기와 실제 막차 확인 필수.</p><small>게이큐 공식 안내: 아사쿠사역까지 열차 이동 약 37분 (대기 제외)</small></div></article>
+    <article class="event"><div class="hour">도착 후</div><div><h3>CREVIA ASAKUSA 체크인</h3><p>5-6-10 Asakusa, Taito-ku, Tokyo 111-0032. 아사쿠사역에서 숙소까지는 도보 이동이 추가돼. 짐이 많거나 늦으면 택시 고려.</p><small>체크인 방식·심야 입실 허용 여부는 숙소 안내에서 확인 필요</small></div></article>
+   </div>
+   <div class="pretitle english" style="margin-top:30px">TRANSFER OPTIONS</div>
+   <div class="transport-options">
+    <div class="transport-option"><h3>A · 게이큐 + 도에이 아사쿠사선</h3><p>하네다 제3터미널 → 아사쿠사역. 직통 운행이 있으면 환승 없이 약 37분. 이후 숙소까지 도보 또는 짧은 택시 이동. 늦은 시각의 실제 시간표에 따라 결정.</p><a class="btn-link" href="https://www.keikyu.co.jp/visit/haneda-airport/access/train.html" target="_blank" rel="noopener">게이큐 공식 안내 ↗</a></div>
+    <div class="transport-option"><h3>B · 택시 / 심야 대안</h3><p>수속 지연으로 막차를 놓치거나 짐이 많은 경우. 하네다 제3터미널에서 숙소 주소로 바로 이동. 요금은 도로 상황과 심야 할증에 따라 달라져.</p><a class="btn-link" href="https://www.google.com/maps/dir/?api=1&origin=Haneda+Airport+Terminal+3&destination=5-6-10+Asakusa+Taito+Tokyo&travelmode=driving" target="_blank" rel="noopener">차량 동선 보기 ↗</a></div>
+   </div>
+   <p class="arrival-note" style="margin-top:15px">※ KE2105의 도착 예정시각은 e-ticket 기준이야. 입국심사와 수하물 수령 소요시간은 확정할 수 없어. 10월 29일 목요일의 열차 시각표는 여행 직전에 재확인하도록 남겨뒀어.</p>
+  </div>
+  <aside>
+   <div class="tripchecks"><div class="pretitle english">PRE-DEPARTURE CHECKLIST</div><h3 style="font-size:21px;margin:0 0 12px">출발 전 준비</h3>
+     <label class="tripcheck"><input type="checkbox" data-check="passport"><span>여권 유효기간·항공권 영문명 확인</span></label>
+     <label class="tripcheck"><input type="checkbox" data-check="visitjapan"><span>Visit Japan Web 입국심사·세관신고 등록 및 QR 준비</span></label>
+     <label class="tripcheck"><input type="checkbox" data-check="eticket"><span>대한항공 e-ticket / 탑승권 개인 기기에 저장</span></label>
+     <label class="tripcheck"><input type="checkbox" data-check="hotel"><span>Crevia Asakusa 심야 체크인 방법 및 출입 코드 확인</span></label>
+     <label class="tripcheck"><input type="checkbox" data-check="train"><span>10/29 게이큐·아사쿠사선 막차 시간 확인</span></label>
+     <label class="tripcheck"><input type="checkbox" data-check="esim"><span>일본 eSIM·로밍 / 교통 IC 카드 준비</span></label>
+     <label class="tripcheck"><input type="checkbox" data-check="payment"><span>일본 엔화·해외결제 카드·충전기 준비</span></label>
+     <div class="arrival-links"><a href="https://www.vjw.digital.go.jp/" target="_blank" rel="noopener">Visit Japan Web ↗</a><a href="https://www.keikyu.co.jp/ride/kakueki/KK16.html" target="_blank" rel="noopener">하네다 T3 열차시간표 ↗</a><a href="https://www.google.com/maps/search/?api=1&query=Crevia+Asakusa+5-6-10" target="_blank" rel="noopener">숙소 지도 ↗</a></div>
+   </div>
+   <div class="sidebox" style="margin-top:20px"><div class="tag english">ADDRESS / CHECK-IN</div><h3>CREVIA ASAKUSA</h3><p>東京都台東区浅草5丁目6-10<br>5-6-10 Asakusa, Taito-ku, Tokyo 111-0032</p><p>숙소 출입·체크인 지침은 예약 안내를 기준으로 최종 확인.</p></div>
+   <p class="arrival-note">체크리스트 체크 여부는 이 기기의 브라우저에 저장돼. 개인별로 따로 체크되며 공개 GitHub 저장소에는 저장되지 않아.</p>
+  </aside>
+ </div>
+ <footer class="footer"><a href="#main">← 메인으로</a><span>개인 항공권번호·예약번호·바코드 등은 공개 사이트에 게시하지 않았습니다.</span></footer>
+</div>
+</section>
 <section class="page" data-view="2026-10-30">
  <div class="shell">
   <div class="day-kicker english">DAY 02 / FRI · 30 OCTOBER 2026</div>
@@ -231,10 +285,10 @@ h1{font-size:clamp(38px,5.5vw,76px);margin:0;line-height:1.13;font-weight:750;le
  function go(){
    var key=decodeURIComponent(location.hash.replace('#',''))||'main';
    if(key!=='main'&&!weekdays[key])key='main';
-   var view=key==='main'?'main':key==='2026-10-30'?'2026-10-30':'empty';
+   var view=key==='main'?'main':key==='2026-10-30'?'2026-10-30':key==='2026-10-29'?'2026-10-29':'empty';
    views.forEach(function(el){el.classList.toggle('active',el.getAttribute('data-view')===view)});
    buttons.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-page')===key);btn.setAttribute('aria-current',btn.getAttribute('data-page')===key?'page':'false')});
-   if(view==='empty'){var p=key.split('-');document.getElementById('empty-title').textContent=(+p[1])+'월 '+(+p[2])+'일 '+weekdays[key];document.getElementById('empty-sub').textContent=key==='2026-10-29'?'도쿄 도착 후 Crevia Asakusa 숙박만 예정되어 있어.':key==='2026-11-03'?'THE GATE HOTEL RYOGOKU 체크아웃 후 Crevia Asakusa로 숙소를 이동하는 날이야.':key==='2026-11-07'?'Crevia Asakusa 체크아웃 예정. 세부 이동 일정은 미정이야.':'세부 방문지와 시간을 아직 정하지 않았어. 날짜별로 함께 채워나가자.'}
+   if(view==='empty'){var p=key.split('-');document.getElementById('empty-title').textContent=(+p[1])+'월 '+(+p[2])+'일 '+weekdays[key];document.getElementById('empty-sub').textContent=key==='2026-10-29'?'':key==='2026-11-03'?'THE GATE HOTEL RYOGOKU 체크아웃 후 Crevia Asakusa로 숙소를 이동하는 날이야.':key==='2026-11-07'?'Crevia Asakusa 체크아웃 예정. 세부 이동 일정은 미정이야.':'세부 방문지와 시간을 아직 정하지 않았어. 날짜별로 함께 채워나가자.'}
    window.scrollTo(0,0);
  }
  buttons.forEach(function(btn){btn.addEventListener('click',function(){location.hash=btn.getAttribute('data-page');if(location.hash==='#main')go()})});
@@ -260,6 +314,7 @@ document.querySelectorAll('[data-region]').forEach(function(el){
  el.addEventListener('click',show);el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();show()}});
 });
 
+ document.querySelectorAll('[data-check]').forEach(function(input){var key='tokyo2026-check-'+input.dataset.check;try{input.checked=localStorage.getItem(key)==='yes'}catch(e){}input.parentElement.classList.toggle('done',input.checked);input.addEventListener('change',function(){input.parentElement.classList.toggle('done',input.checked);try{localStorage.setItem(key,input.checked?'yes':'no')}catch(e){}})});
  window.addEventListener('hashchange',go);go();
 })();
 </script>
