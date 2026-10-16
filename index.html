@@ -63,7 +63,7 @@ h1{font-size:clamp(38px,5.5vw,76px);margin:0;line-height:1.13;font-weight:750;le
 .map-frame{background:#ede5dc;border:1px solid #d8c9c1;min-height:430px;overflow:hidden}
 .map-frame svg{display:block;width:100%;height:100%}
 .venues{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line)}
-.venue{background:var(--white);padding:16px 19px;flex:1}
+.venue{background:var(--white);padding:16px 19px;flex:1;cursor:pointer;transition:background .15s}.venue:hover,.venue.selected{background:#efe2e6}.venue:focus-visible{outline:2px solid var(--burg);outline-offset:-2px}.map-region-caption{margin-top:18px;color:var(--burg);font-weight:750;font-size:14px}
 .venue .num{color:var(--burg);font:bold 11px "Pretendard Variable",sans-serif;margin-right:9px}
 .venue strong{font-size:14px;font-weight:720}
 .venue p{font-size:12px;color:var(--muted);margin:5px 0 0 27px;line-height:1.6}
@@ -130,13 +130,13 @@ h1{font-size:clamp(38px,5.5vw,76px);margin:0;line-height:1.13;font-weight:750;le
   <div class="stay-grid">
    <a href="https://www.gate-hotel.jp/en/ryogoku/" target="_blank" rel="noopener" class="stay">
     <div class="photo-wrap">
-      <img src="https://www.gate-hotel.jp/ryogoku/gallery/g_0062.jpg" data-fallback="assets/photos/sumida-sunset.jpg" data-credit="공식 호텔 사진 로드 실패 · 스미다 지역 이미지" alt="THE GATE HOTEL RYOGOKU 공식 테라스 사진. 로드 실패 시 스미다 지역 전경" loading="lazy">
+      <img src="https://cdn.jalan.jp/jalan/images/pict3L/Y1/Y361371/Y361371203.jpg" data-fallback="assets/photos/sumida-sunset.jpg" data-credit="공식 호텔 사진 로드 실패 · 스미다 지역 이미지" alt="THE GATE HOTEL RYOGOKU 호텔 건물 외관" loading="lazy">
     </div>
-    <div class="stay-body"><div class="index-number english">01 / STAY</div><div><h3 class="english">THE GATE HOTEL RYOGOKU</h3><div class="period">10월 30일(금) 체크인 — 11월 3일(화) 체크아웃</div><div class="sub">스미다강 옆 · 료고쿠역 인근<br>호텔 공식 홈페이지에서 사진 및 시설 확인</div><span class="arrow">공식 사이트 ↗</span></div></div>
+    <div class="stay-body"><div class="index-number english">01 / STAY</div><div><h3 class="english">THE GATE HOTEL RYOGOKU</h3><div class="period">10월 30일(금) 체크인 — 11월 3일(화) 체크아웃</div><div class="sub">1-2-13 Yokoami, Sumida-ku, Tokyo 130-0015, Japan</div><span class="arrow">공식 사이트 ↗</span></div></div>
    </a>
    <div class="stay">
-     <div class="photo-wrap"><img src="assets/photos/asakusa-aerial.jpg" alt="도쿄 스카이트리에서 바라본 도시 풍경 — 아사쿠사 권역 이미지" loading="lazy"></div>
-     <div class="stay-body"><div class="index-number english">02 / STAY</div><div><h3 class="english">CREVIA ASAKUSA</h3><div class="period">10월 29일(목) 1박 / 11월 3일(화) — 11월 7일(토) 체크아웃</div><div class="sub">아사쿠사 권역 베이스<br>정확한 객실 주소·체크인 방법은 예약 안내에서 확인</div><span class="arrow english">ASAKUSA, TOKYO</span></div></div>
+     <div class="photo-wrap"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Sensoji.jpg?width=960" data-fallback="assets/photos/asakusa-aerial.jpg" alt="아사쿠사 센소지 전경" loading="lazy"></div>
+     <div class="stay-body"><div class="index-number english">02 / STAY</div><div><h3 class="english">CREVIA ASAKUSA</h3><div class="period">10월 29일(목) 1박 / 11월 3일(화) — 11월 7일(토) 체크아웃</div><div class="sub">5-6-10 Asakusa, Taito-ku, Tokyo 111-0032, Japan</div><span class="arrow english">ASAKUSA, TOKYO</span></div></div>
    </div>
   </div>
  </section>
@@ -168,18 +168,20 @@ h1{font-size:clamp(38px,5.5vw,76px);margin:0;line-height:1.13;font-weight:750;le
     </svg>
    </div>
    <div class="venues">
-     <div class="venue"><span class="num">01</span><strong>RYOGOKU / ASAKUSA</strong><p>두 숙소를 중심으로 스미다강과 동쪽 도쿄 산책</p></div>
-     <div class="venue"><span class="num">02</span><strong>HIBIYA / YURAKUCHO</strong><p>도쿄국제영화제 · 영화관 · 서점 · 카페</p></div>
-     <div class="venue"><span class="num">03</span><strong>KYOBASHI / GINZA</strong><p>국립영화아카이브 · 영화와 점심 동선</p></div>
-     <div class="venue"><span class="num">04</span><strong>SHINJUKU NICHOME</strong><p>10월 30일 저녁 이후 클럽 방문</p></div>
-     <div class="venue"><span class="num">05</span><strong>EBISU / MEGURO</strong><p>향후 일정 후보 · 사진과 산책, 독립서점</p></div>
+     <div class="venue" role="button" tabindex="0" data-region="east" aria-pressed="false"><span class="num">01</span><strong>RYOGOKU / ASAKUSA</strong><p>두 숙소를 중심으로 스미다강과 동쪽 도쿄 산책</p></div>
+     <div class="venue" role="button" tabindex="0" data-region="central" aria-pressed="false"><span class="num">02</span><strong>HIBIYA / YURAKUCHO</strong><p>도쿄국제영화제 · 영화관 · 서점 · 카페</p></div>
+     <div class="venue" role="button" tabindex="0" data-region="ginza" aria-pressed="false"><span class="num">03</span><strong>KYOBASHI / GINZA</strong><p>국립영화아카이브 · 영화와 점심 동선</p></div>
+     <div class="venue" role="button" tabindex="0" data-region="night" aria-pressed="false"><span class="num">04</span><strong>SHINJUKU NICHOME</strong><p>10월 30일 저녁 이후 클럽 방문</p></div>
+     <div class="venue" role="button" tabindex="0" data-region="west" aria-pressed="false"><span class="num">05</span><strong>EBISU / MEGURO</strong><p>향후 일정 후보 · 사진과 산책, 독립서점</p></div>
    </div>
   </div>
+  <div class="map-region-caption" id="region-caption">권역을 선택하면 관련 장소와 사진이 표시됩니다. · 아래는 기본 이미지</div>
   <div class="moments">
     <figure class="moment" style="margin:0"><img src="assets/photos/sumida-sunset.jpg" alt="도쿄 스카이트리에서 바라본 일몰" loading="lazy"><figcaption>SUMIDA / SUNSET</figcaption></figure>
     <figure class="moment" style="margin:0"><img src="assets/photos/tokyo-garden.jpg" alt="도쿄 황거 외원 소나무 정원" loading="lazy"><figcaption>CITY GARDEN / TOKYO</figcaption></figure>
     <figure class="moment" style="margin:0"><img src="assets/photos/asakusa-aerial.jpg" alt="도쿄 동부를 내려다본 풍경" loading="lazy"><figcaption>ASAKUSA / EAST TOKYO</figcaption></figure>
   </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><button class="btn-link" type="button" data-region="ueno">UENO / 우에노공원·국립서양미술관 ↗</button><button class="btn-link" type="button" data-region="kiyosumi">KIYOSUMI / 도쿄현대미술관 ↗</button></div>
  </section>
  <footer class="footer"><div class="english">TOKYO 2026 / AN EDITORIAL TRAVEL JOURNAL</div><div>여행 계획은 계속 업데이트됩니다. <a href="#2026-10-30">10월 30일 상세 일정 보기 ↗</a></div></footer>
 </div>
@@ -236,7 +238,28 @@ h1{font-size:clamp(38px,5.5vw,76px);margin:0;line-height:1.13;font-weight:750;le
    window.scrollTo(0,0);
  }
  buttons.forEach(function(btn){btn.addEventListener('click',function(){location.hash=btn.getAttribute('data-page');if(location.hash==='#main')go()})});
- document.querySelectorAll('img[data-fallback]').forEach(function(img){img.addEventListener('error',function(){var fallback=img.getAttribute('data-fallback');if(img.getAttribute('src')!==fallback){img.src=fallback;img.alt=img.getAttribute('data-credit')||'도쿄 사진'}})});
+ document.addEventListener('error',function(e){var img=e.target;if(img&&img.tagName==='IMG'&&img.dataset.fallback&&img.src.indexOf(img.dataset.fallback)<0){img.src=img.dataset.fallback}},true);
+
+var photoDirectory={
+east:{title:'료고쿠 · 아사쿠사',items:[['센소지','https://commons.wikimedia.org/wiki/Special:Redirect/file/Sensoji.jpg?width=960','assets/photos/asakusa-aerial.jpg'],['스미다강·료고쿠','assets/photos/sumida-sunset.jpg',''],['아사쿠사 주변','assets/photos/asakusa-aerial.jpg','']]},
+central:{title:'히비야 · 유라쿠초',items:[['도쿄국제영화제 / 행사 정보','assets/photos/tokyo-skyline.jpg',''],['히비야 주변 산책','assets/photos/tokyo-garden.jpg',''],['긴자·유라쿠초','assets/photos/tokyo-skyline.jpg','']]},
+ginza:{title:'교바시 · 긴자',items:[['국립영화아카이브','assets/photos/tokyo-skyline.jpg',''],['긴자 거리','assets/photos/tokyo-garden.jpg',''],['영화관 권역','assets/photos/asakusa-aerial.jpg','']]},
+night:{title:'신주쿠 니초메',items:[['Arty Farty / 예정','assets/photos/tokyo-skyline.jpg',''],['AiSOTOPE / 예정','assets/photos/sumida-sunset.jpg',''],['신주쿠 주변','assets/photos/tokyo-garden.jpg','']]},
+west:{title:'에비스 · 메구로',items:[['도쿄도사진미술관 / 후보','assets/photos/tokyo-garden.jpg',''],['나카메구로 산책 / 후보','assets/photos/sumida-sunset.jpg',''],['다이칸야마 / 후보','assets/photos/tokyo-skyline.jpg','']]},
+ueno:{title:'우에노',items:[['우에노공원','assets/photos/tokyo-garden.jpg',''],['국립서양미술관','assets/photos/tokyo-skyline.jpg',''],['우에노 주변 산책','assets/photos/asakusa-aerial.jpg','']]},
+kiyosumi:{title:'키요스미시라카와',items:[['도쿄현대미술관','assets/photos/tokyo-garden.jpg',''],['카페와 골목','assets/photos/asakusa-aerial.jpg',''],['스미다 동쪽','assets/photos/sumida-sunset.jpg','']]}
+};
+document.querySelectorAll('[data-region]').forEach(function(el){
+ function show(){
+ var key=el.dataset.region,entry=photoDirectory[key];if(!entry)return;
+ document.querySelectorAll('[data-region]').forEach(function(a){a.classList.toggle('selected',a.dataset.region===key);a.setAttribute('aria-pressed',a.dataset.region===key?'true':'false')});
+ var cap=document.getElementById('region-caption');cap.textContent=entry.title+' / 주요 장소 · 사진은 일부 권역 참고 이미지';
+ var figures=document.querySelectorAll('.moments figure');
+ entry.items.forEach(function(item,i){var img=figures[i].querySelector('img');img.src=item[1];img.alt=item[0];if(item[2])img.setAttribute('data-fallback',item[2]);else img.removeAttribute('data-fallback');figures[i].querySelector('figcaption').textContent=item[0]});
+ }
+ el.addEventListener('click',show);el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();show()}});
+});
+
  window.addEventListener('hashchange',go);go();
 })();
 </script>
