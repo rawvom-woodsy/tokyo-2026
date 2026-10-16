@@ -367,7 +367,7 @@ h1{font-size:clamp(38px,5.5vw,76px);margin:0;line-height:1.13;font-weight:750;le
  function go(){
    var key=decodeURIComponent(location.hash.replace('#',''))||'main';
    if(key!=='main'&&!weekdays[key])key='main';
-   var view=key==='main'?'main':key==='2026-10-30'?'2026-10-30':key==='2026-10-29'?'2026-10-29':'empty';
+   var view=key==='main'?'main':(key==='2026-10-29'||key==='2026-10-30'||key==='2026-10-31')?key:'empty';
    views.forEach(function(el){el.classList.toggle('active',el.getAttribute('data-view')===view)});
    buttons.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-page')===key);btn.setAttribute('aria-current',btn.getAttribute('data-page')===key?'page':'false')});
    if(view==='empty'){var p=key.split('-');document.getElementById('empty-title').textContent=(+p[1])+'월 '+(+p[2])+'일 '+weekdays[key];document.getElementById('empty-sub').textContent=key==='2026-10-29'?'':key==='2026-11-03'?'THE GATE HOTEL RYOGOKU 체크아웃 후 Crevia Asakusa로 숙소를 이동하는 날이야.':key==='2026-11-07'?'Crevia Asakusa 체크아웃 예정. 세부 이동 일정은 미정이야.':'세부 방문지와 시간을 아직 정하지 않았어. 날짜별로 함께 채워나가자.'}
