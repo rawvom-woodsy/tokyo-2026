@@ -28,10 +28,8 @@ if(!value.trim()||value.length>3000){notify('1~3,000자로 입력해 줘.');retu
 const {error}=await db.from('tokyo_edits').upsert({element_key:key,content:value,updated_at:new Date().toISOString()});
 if(error)notify(error.message);else{node.textContent=value;notify('저장됐어.')}};
 });
-page.querySelectorAll('.event,.sidebox,.stay,.transport-option,.notice').forEach(node=>{
+page.querySelectorAll('.timeline .event').forEach(node=>{
 const key='card:'+section+':'+ci++;
-const kind=(node.querySelector('.tag,.pretitle')?.textContent||'').toUpperCase();
-if(node.matches('.stay')||/\b(STAY|BUDGET|ESTIMATE BUDGET)\b/.test(kind)||node.querySelector('.budget-list'))return;
 const toggle=make('button','tc-card-toggle','💬 코멘트 · 의견 보기');
 toggle.type='button';const panel=make('div','tc-panel');panel.hidden=true;
 toggle.onclick=ev=>{ev.preventDefault();ev.stopPropagation();panel.hidden=!panel.hidden};
@@ -40,9 +38,31 @@ else node.append(toggle,panel);
 cards.push({key,toggle,panel});
 });
 });
+
 let comments=[],votes=[];
+const hearts=[];
+document.querySelectorAll('.page').forEach(page=>{
+const day=page.dataset.view||'main';
+page.querySelectorAll('.sidebox').forEach(card=>{
+const tag=(card.querySelector('.tag')?.textContent||'').toUpperCase();
+const title=card.querySelector('h3')?.textContent||'';
+if(!(/DINNER \/ OPTION|OPTION [AB] \/ (YAKITORI|MONJAYAKI)/.test(tag)))return;
+const key='dinner:'+day+':'+title.trim();
+const heart=make('button','tc-heart','♡ 0');heart.type='button';heart.setAttribute('aria-label',title+' 선호도 하트');
+const holder=make('div','tc-heart-wrap');holder.append(heart);
+const place=card.querySelector('.btn-link');if(place)place.before(holder);else card.append(holder);
+hearts.push({key,heart});
+heart.onclick=async()=>{
+if(heart.disabled)return;heart.disabled=true;
+const {error}=await db.from('tokyo_votes').insert({element_key:key,voter_id:voter,choice:'yes'});
+if(error){notify('하트 저장 실패: '+error.message);heart.disabled=false;}else await reloadVotes();
+};
+});
+});
+
 let voter=localStorage.getItem('tokyo26-voter');if(!voter){voter=crypto.randomUUID();localStorage.setItem('tokyo26-voter',voter)}
 function draw(){
+hearts.forEach(({key,heart})=>{const set=votes.filter(v=>v.element_key===key);const liked=set.some(v=>v.voter_id===voter);heart.textContent=(liked?'♥':'♡')+' '+set.length;heart.classList.toggle('selected',liked);heart.disabled=liked;});
 cards.forEach(card=>{
 const c=comments.filter(x=>x.element_key===card.key),v=votes.filter(x=>x.element_key===card.key),mine=v.some(x=>x.voter_id===voter);
 card.toggle.textContent='💬 코멘트 '+c.length+' · 의견 보기';card.panel.replaceChildren();
