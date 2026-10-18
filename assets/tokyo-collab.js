@@ -46,8 +46,8 @@ const day=page.dataset.view||'main';
 page.querySelectorAll('.sidebox').forEach(card=>{
 const tag=(card.querySelector('.tag')?.textContent||'').toUpperCase();
 const title=card.querySelector('h3')?.textContent||'';
-if(!(/DINNER \/ OPTION|OPTION [AB] \/ (YAKITORI|MONJAYAKI)/.test(tag)))return;
-const key='dinner:'+day+':'+title.trim();
+if(!(/(DINNER|LUNCH|COFFEE) \/ OPTION|OPTION [AB] \/ (YAKITORI|MONJAYAKI)/.test(tag)))return;
+const key=(tag.includes('DINNER')||tag.includes('YAKITORI')||tag.includes('MONJAYAKI')?'dinner:':'choice:')+day+':'+title.trim();
 const heart=make('button','tc-heart','♡ 0');heart.type='button';heart.setAttribute('aria-label',title+' 선호도 하트');
 const holder=make('div','tc-heart-wrap');holder.append(heart);
 const place=card.querySelector('.btn-link');if(place)place.before(holder);else card.append(holder);
