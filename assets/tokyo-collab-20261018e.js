@@ -19,7 +19,7 @@ document.querySelectorAll('.page').forEach(page=>{
 const section=page.dataset.view||'main';let ti=0,ci=0;
 page.querySelectorAll('h1,h2,h3,p,dd,dt,small,.hour,.overlay,.notice,.period,.sub,.money,.tag').forEach(node=>{
 if(!node.textContent.trim()||Array.from(node.children).some(c=>c.tagName!=='BR'))return;
-const key='text:'+section+':'+ti++;texts.push({key,node});
+const key=(section==='2026-10-31'?'textv2:':'text:')+section+':'+ti++;texts.push({key,node});
 const button=make('button','tc-edit-trigger','✎');button.type='button';button.title='문장 편집';
 node.insertAdjacentElement('afterend',button);
 button.onclick=async ev=>{ev.stopPropagation();ev.preventDefault();if(!isOwner||!editing)return;
