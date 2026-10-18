@@ -29,7 +29,10 @@ const {error}=await db.from('tokyo_edits').upsert({element_key:key,content:value
 if(error)notify(error.message);else{node.textContent=value;notify('저장됐어.')}};
 });
 page.querySelectorAll('.event,.sidebox,.stay,.transport-option,.notice').forEach(node=>{
-const key='card:'+section+':'+ci++;const toggle=make('button','tc-card-toggle','💬 코멘트 · 의견 보기');
+const key='card:'+section+':'+ci++;
+const kind=(node.querySelector('.tag,.pretitle')?.textContent||'').toUpperCase();
+if(node.matches('.stay')||/\b(STAY|BUDGET|ESTIMATE BUDGET)\b/.test(kind)||node.querySelector('.budget-list'))return;
+const toggle=make('button','tc-card-toggle','💬 코멘트 · 의견 보기');
 toggle.type='button';const panel=make('div','tc-panel');panel.hidden=true;
 toggle.onclick=ev=>{ev.preventDefault();ev.stopPropagation();panel.hidden=!panel.hidden};
 if(node.tagName==='A'){const holder=make('div','tc-card-extras');holder.append(toggle,panel);node.after(holder)}
