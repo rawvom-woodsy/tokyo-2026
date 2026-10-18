@@ -108,6 +108,7 @@ h1{font-size:clamp(38px,5.5vw,76px);margin:0;line-height:1.13;font-weight:750;le
 /* Keep the itinerary sidebar next to the timeline on tablet and desktop */
 @media (min-width:761px){.page[data-view="2026-10-30"] .day-columns,.page[data-view="2026-10-31"] .day-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,29%);gap:clamp(20px,3vw,48px);align-items:start}.page[data-view="2026-10-30"] .day-columns>aside,.page[data-view="2026-10-31"] .day-columns>aside{grid-column:2;min-width:0}.page[data-view="2026-10-30"] .day-columns>div:first-child,.page[data-view="2026-10-31"] .day-columns>div:first-child{grid-column:1;min-width:0}}
 </style>
+<link rel="stylesheet" href="../assets/tokyo-collab.css">
 </head>
 <body>
 <header class="site-head">
@@ -301,5 +302,7 @@ document.querySelectorAll('[data-region]').forEach(function(el){
  window.addEventListener('hashchange',go);go();
 })();
 </script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.76.1/dist/umd/supabase.min.js"></script>
+<script defer src="../assets/tokyo-collab.js"></script>
 </body>
 </html>
