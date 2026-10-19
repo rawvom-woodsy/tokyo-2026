@@ -1,6 +1,7 @@
 (()=>{
 const U='https://jbsjjmmlqzxsuxgvvnfq.supabase.co',K='sb_publishable_fCFNPFfNZ28XTcOCjnngIA_jxlSLfmi',OWNER='fe944cb5-7ee7-471f-a6bd-4925501b6fa4';
-const db=window.supabase?.createClient(U,K);if(!db)return;
+const revealText=()=>document.documentElement.classList.remove('tc-text-pending');
+const db=window.supabase?.createClient(U,K);if(!db){revealText();return;}
 const make=(tag,cls,label)=>{const e=document.createElement(tag);e.className=cls||'';if(label!==undefined)e.textContent=label;return e};
 const notify=s=>{const e=make('div','tc-toast',s);document.body.append(e);setTimeout(()=>e.remove(),3200)};
 let isOwner=false,editing=false;
@@ -91,6 +92,6 @@ if(error)notify(error.message);else await reloadVotes()}})}
 async function reloadComments(){const {data,error}=await db.from('tokyo_comments').select('*').order('created_at',{ascending:true}).limit(1500);if(error)notify('댓글 불러오기 실패');else{comments=data||[];draw()}}
 async function reloadVotes(){const {data,error}=await db.from('tokyo_votes').select('element_key,voter_id,choice').limit(5000);if(!error){votes=data||[];draw()}}
 db.auth.onAuthStateChange(()=>setTimeout(async()=>{await auth();draw()},0));
-(async()=>{await auth();const {data}=await db.from('tokyo_edits').select('element_key,content');const m=new Map((data||[]).map(x=>[x.element_key,x.content]));texts.forEach(x=>{if(x.node.matches('h1')&&x.node.closest('.page')?.dataset.view==='main')return;if(m.has(x.key))x.node.textContent=m.get(x.key)});
-await Promise.all([reloadComments(),reloadVotes()]);})();
+(async()=>{try{const {data,error}=await db.from('tokyo_edits').select('element_key,content');if(error)console.warn('Saved text load failed',error);else{const m=new Map((data||[]).map(x=>[x.element_key,x.content]));texts.forEach(x=>{if(x.node.matches('h1')&&x.node.closest('.page')?.dataset.view==='main')return;if(m.has(x.key))x.node.textContent=m.get(x.key)})}}catch(e){console.warn('Saved text load failed',e)}finally{revealText()}
+await auth();await Promise.all([reloadComments(),reloadVotes()]);})();
 })();
