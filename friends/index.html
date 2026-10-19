@@ -463,27 +463,55 @@ document.querySelectorAll('[data-region]').forEach(function(el){
 <script defer src="../assets/tokyo-collab-20261018e.js?fix=20261018h"></script>
 
 <script id="tokyo-day-checklist">
-(()=>{function init(){
-document.querySelectorAll('.page[data-view^="2026-"]').forEach(page=>{
-const day=page.dataset.view,aside=page.querySelector('.day-columns>aside');if(!aside)return;
-const candidate=[...aside.children].find(el=>/HIGHLIGHTS/.test((el.querySelector('.tag,.pretitle')||{}).textContent||''));if(!candidate)return;
-candidate.classList.add('highlight-box');
-let list=candidate.querySelector('.highlights');
-if(!list){list=document.createElement('div');list.className='highlights';[...candidate.children].filter(x=>x.tagName==='P'&&/^[□✓✔]/.test(x.textContent.trim())).forEach(p=>list.append(p));candidate.append(list)}
-list.removeAttribute('style');
-[...list.children].forEach((item,i)=>{
-if(item.matches('label.highlight-check'))return;
-const raw=item.textContent.trim(),done=/^[✓✔]/.test(raw),label=raw.replace(/^[□✓✔]\s*/,'');
-const key='tokyo-highlight:v1:'+day+':'+label;
-let checked=done;try{const saved=localStorage.getItem(key);if(saved!==null)checked=saved==='1'}catch(e){}
-const wrap=document.createElement('label');wrap.className='highlight-check';
-const check=document.createElement('input');check.type='checkbox';check.checked=checked;check.setAttribute('aria-label',label);
-check.addEventListener('change',()=>{try{localStorage.setItem(key,check.checked?'1':'0')}catch(e){}});
-const span=document.createElement('span');span.textContent=label;
-wrap.append(check,span);item.replaceWith(wrap);
-});
-});
-}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+(()=>{
+const URL='https://jbsjjmmlqzxsuxgvvnfq.supabase.co';
+const KEY='sb_publishable_fCFNPFfNZ28XTcOCjnngIA_jxlSLfmi';
+function start(){
+  const items=new Map();
+  document.querySelectorAll('.page[data-view^="2026-"]').forEach(page=>{
+    const aside=page.querySelector('.day-columns>aside');if(!aside)return;
+    const box=[...aside.children].find(el=>/HIGHLIGHTS/.test((el.querySelector('.tag,.pretitle')||{}).textContent||''));if(!box)return;
+    box.classList.add('highlight-box');
+    let list=box.querySelector('.highlights');
+    if(!list){list=document.createElement('div');list.className='highlights';[...box.children].filter(el=>el.tagName==='P'&&/^[□✓✔]/.test(el.textContent.trim())).forEach(el=>list.append(el));box.append(list)}
+    list.removeAttribute('style');
+    [...list.children].forEach(item=>{
+      const raw=item.textContent.trim(),initial=/^[✓✔]/.test(raw),name=raw.replace(/^[□✓✔]\s*/,'');
+      const id=page.dataset.view+':'+name;if(id.length>200)return;
+      const label=document.createElement('label');label.className='highlight-check';
+      const input=document.createElement('input');input.type='checkbox';input.checked=initial;input.setAttribute('aria-label',name);
+      const span=document.createElement('span');span.textContent=name;label.append(input,span);item.replaceWith(label);
+      if(!items.has(id))items.set(id,{input,initial});
+      else {const entry=items.get(id);entry.more=(entry.more||[]).concat(input)}
+    });
+  });
+  const client=window.supabase?.createClient(URL,KEY);
+  if(!client)return;
+  const updateUI=(id,value)=>{const obj=items.get(id);if(!obj)return;obj.input.checked=value;(obj.more||[]).forEach(x=>x.checked=value)};
+  async function sync(){
+    const {data,error}=await client.from('tokyo_checklist').select('item_key,completed');
+    if(error){console.warn('Shared checklist sync:',error.message);return}
+    const rows=new Map(data.map(r=>[r.item_key,r.completed]));
+    for(const [id,obj] of items)if(rows.has(id))updateUI(id,rows.get(id));
+    const defaults=[...items].filter(([id,obj])=>!rows.has(id)&&obj.initial).map(([item_key])=>({item_key,completed:true}));
+    if(defaults.length)await client.from('tokyo_checklist').upsert(defaults,{onConflict:'item_key',ignoreDuplicates:true});
+  }
+  for(const [id,obj] of items){
+    const inputs=[obj.input,...(obj.more||[])];
+    inputs.forEach(input=>input.addEventListener('change',async()=>{
+      const checked=input.checked;updateUI(id,checked);
+      const {error}=await client.from('tokyo_checklist').upsert({item_key:id,completed:checked,updated_at:new Date().toISOString()},{onConflict:'item_key'});
+      if(error){console.warn('Shared checklist update:',error.message);await sync()}
+    }));
+  }
+  sync();
+  client.channel('tokyo-shared-checklist').on('postgres_changes',{event:'*',schema:'public',table:'tokyo_checklist'},payload=>{
+    if(payload.new?.item_key)updateUI(payload.new.item_key,payload.new.completed);
+  }).subscribe();
+  setInterval(()=>{if(document.visibilityState==='visible')sync()},10000);
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')sync()});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
 })();
 </script>
 </body>
