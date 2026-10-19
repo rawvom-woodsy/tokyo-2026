@@ -91,6 +91,6 @@ if(error)notify(error.message);else await reloadVotes()}})}
 async function reloadComments(){const {data,error}=await db.from('tokyo_comments').select('*').order('created_at',{ascending:true}).limit(1500);if(error)notify('댓글 불러오기 실패');else{comments=data||[];draw()}}
 async function reloadVotes(){const {data,error}=await db.from('tokyo_votes').select('element_key,voter_id,choice').limit(5000);if(!error){votes=data||[];draw()}}
 db.auth.onAuthStateChange(()=>setTimeout(async()=>{await auth();draw()},0));
-(async()=>{await auth();const {data}=await db.from('tokyo_edits').select('element_key,content');const m=new Map((data||[]).map(x=>[x.element_key,x.content]));texts.forEach(x=>{if(m.has(x.key))x.node.textContent=m.get(x.key)});
+(async()=>{await auth();const {data}=await db.from('tokyo_edits').select('element_key,content');const m=new Map((data||[]).map(x=>[x.element_key,x.content]));texts.forEach(x=>{if(x.node.matches('h1')&&x.node.closest('.page')?.dataset.view==='main')return;if(m.has(x.key))x.node.textContent=m.get(x.key)});
 await Promise.all([reloadComments(),reloadVotes()]);})();
 })();
